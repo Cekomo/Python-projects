@@ -1,4 +1,4 @@
-from database import DatabaseConnector
+
 
 class QuizController():
     def __init__(self):        
@@ -9,18 +9,6 @@ class QuizController():
         self.opt_d = []
         self.answers = []
         self.question_count = 0
-
-        self.question_query = """
-        SELECT * FROM questions;
-    """
-        
-    def get_question_records(self, query):
-        connection = DatabaseConnector.get_database_connection()
-        cursor = connection.cursor()
-        cursor.execute(query)
-        records = cursor.fetchall()
-        connection.close()
-        return records
     
     def prepare_question_parameters(self, records):
         self.question_count = len(records)

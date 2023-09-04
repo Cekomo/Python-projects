@@ -12,5 +12,12 @@ class DatabaseConnector():
         port="5432"
         )
 
-
+    @staticmethod
+    def get_records(query):
+        connection = DatabaseConnector.get_database_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        records = cursor.fetchall()
+        connection.close()
+        return records
     
