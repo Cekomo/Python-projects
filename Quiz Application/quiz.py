@@ -1,19 +1,13 @@
-import psycopg2
+from database import DatabaseConnector
 
-connection = psycopg2.connect(
-    dbname="quiz_db",
-    user="postgres",
-    password="3204965",
-    host="localhost",
-    port="5432"
-)
-
-query = """
-    SELECT * FROM quizes;
-"""
-
+connection = DatabaseConnector.get_database_connection()
 cursor = connection.cursor()
-cursor.execute(query)
+
+question_query = """
+        SELECT * FROM questions;
+    """
+
+cursor.execute(question_query)
 
 fields = cursor.fetchall()
 
@@ -36,23 +30,23 @@ def prepare_answer(answer):
         return 3
     elif answer in ('d','D','4'):
         return 4
-    elif answer == 0:
+    elif answer in ('q', 'Q'):
         return 0
     else:   
-        print("Please enter valid answer.")
         return 9
 
 print(options_a) 
 print("Welcome to quiz, please enter correct option's letter to ",
-    "answer questions press 0 to quit.")
+    "answer questions press q to quit.")
 
 q_index = 0
 while q_index < len(fields):
 
-    print(f"{questions[q_index]}\nA) {options_a[q_index]}\nB)", 
-        f"{options_b[q_index]}\nC) {options_c[q_index]} \nD) {options_d[q_index]}")
+    print(f"\n{q_index+1} - {questions[q_index]}\nA) {options_a[q_index]}\nB)", 
+        f"{options_b[q_index]}\nC) {options_c[q_index]}\nD) {options_d[q_index]}\n")
     answer = prepare_answer(input("Answer: "))
     if answer == 0:
+        print("Quiz is quitted.")
         break
     elif answer == answers[q_index]:
         correct_q_count += 1
@@ -62,5 +56,4 @@ while q_index < len(fields):
     else:
         print("Please enter valid answer.")
     
-
 print(f"\nCorrect answer count: {correct_q_count}")
