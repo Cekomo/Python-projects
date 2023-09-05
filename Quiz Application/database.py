@@ -21,3 +21,10 @@ class DatabaseConnector():
         connection.close()
         return records
     
+    @staticmethod
+    def insert_record(query, record_values):
+        connection = DatabaseConnector.get_database_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, record_values)
+        connection.commit()
+        connection.close()
