@@ -20,6 +20,7 @@ class UserController():
             self.password = input("Password: ")
 
             if self.is_login_successful():
+                self.is_logged_in = True
                 print("\nLogin succesful.")
                 break
             else:
@@ -37,8 +38,8 @@ class UserController():
     def is_login_successful(self):
         acc_index = 0
         for u in self.usernames:
+            # print(self.username == u, self.password == self.passwords[acc_index])
             if self.username == u and self.password == self.passwords[acc_index]:
-                self.is_logged_in = True
                 return True
             
             acc_index += 1
