@@ -16,7 +16,7 @@ class MenuController():
         print("\n1 - Log in\n2 - Register\n0 - Quit")
 
     def display_second_menu(self):
-        print("\n1 - Solve quiz!\n2 - Review quiz score\n0 - Log out")
+        print("\n1 - Select quiz!\n2 - Review quiz score\n0 - Log out")
      
     def control_menu(self):
         while True:
@@ -38,9 +38,17 @@ class MenuController():
                 navigator = input("Go to: ")
                 
                 if navigator == '1':
-                    print("Welcome to quiz, please enter correct option's letter to ",
-                        "answer questions press q to quit.")
-                    self.qc.control_quiz()
+                    print("What type of quiz would you like to solve? "
+                          "Please enter respective number.\n")
+                    i = 1
+                    for category in self.quiz_class.quiz_categories:
+                        print(f"{i} - {category}")
+                        i += 1
+
+                    navigator = input("Solve: ")
+                    self.quiz_class.prepare_quiz_questions(navigator)
+                    self.quiz_class.control_quiz()
+                    
                 elif navigator == '2':
                     pass
                 elif navigator == '0':
