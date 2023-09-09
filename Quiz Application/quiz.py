@@ -3,6 +3,7 @@ from database import DatabaseConnector
 class QuizController():
     def __init__(self):   
         self.quiz_id = 0
+        self.quiz_category = ""
         self.question_ids = []     
         self.questions = []
         self.opt_a = []
@@ -31,7 +32,7 @@ class QuizController():
         for id in self.quiz_ids:
             if quiz_id == str(id):
                 quiz_query = f""" SELECT * FROM quizes
-                    WHERE quiz_id = {id} """
+                    WHERE quiz_id = {id} """ 
                 record = DatabaseConnector.get_records(quiz_query)
                 i = 0
                 self.quiz_question_ids = []

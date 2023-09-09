@@ -17,7 +17,7 @@ class UserController():
 
     def check_account_inquiry(self):
         while True:
-            print("\nPlease enter username and password to login.")
+            print("Please enter username and password to login.")
             self.username = input("Username: ").lower()
             self.password = input("Password: ")
 
