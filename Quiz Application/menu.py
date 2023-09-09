@@ -1,5 +1,3 @@
-from user import UserController
-from quiz import QuizController
 import time
 
 class MenuController():
@@ -46,8 +44,10 @@ class MenuController():
                         i += 1
 
                     navigator = input("Solve: ")
+                    self.quiz_class.quiz_id = navigator
                     self.quiz_class.prepare_quiz_questions(navigator)
                     self.quiz_class.control_quiz()
+                    self.quiz_class.save_result(self.user_class.user_id)
                     
                 elif navigator == '2':
                     pass

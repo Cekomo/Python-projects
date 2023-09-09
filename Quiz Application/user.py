@@ -1,15 +1,17 @@
 from database import DatabaseConnector
 
-
 class UserController():
     def __init__(self):
         self.is_logged_in = False
+        self.user_id = 0
         self.username = ""
         self.password = ""
+        self.user_ids = []
         self.usernames = []
         self.password = []
 
     def prepare_account_parameters(self, records):
+        self.user_ids = [row[0] for row in records]
         self.usernames = [row[1] for row in records]
         self.passwords = [row[2] for row in records]
 
@@ -40,6 +42,7 @@ class UserController():
         for u in self.usernames:
             # print(self.username == u, self.password == self.passwords[acc_index])
             if self.username == u and self.password == self.passwords[acc_index]:
+                self.user_id = self.user_ids[acc_index]        
                 return True
             
             acc_index += 1
@@ -64,7 +67,7 @@ class UserController():
     def save_account(self, username, password):
         register_query = f"""
             INSERT INTO users(username, password, quiz_taken, quiz_successful)
-            VALUES (%s, %s, %s, %s);
-    """
+            VALUES (%s, %s, %s, %s); """
+        
         register_values = (str(username), password, 0, 0)
         DatabaseConnector.insert_record(register_query, register_values)

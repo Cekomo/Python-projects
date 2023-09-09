@@ -2,6 +2,9 @@ from database import DatabaseConnector
 
 class QuizController():
     def __init__(self):   
+        self.q_given_answers = []
+
+        self.quiz_id = 0
         self.question_ids = []     
         self.questions = []
         self.opt_a = []
@@ -9,7 +12,6 @@ class QuizController():
         self.opt_c = []
         self.opt_d = []
         self.answers = []
-
         self.quiz_ids = []
         self.quiz_categories = []
         self.quiz_question_ids = []
@@ -34,6 +36,7 @@ class QuizController():
                     WHERE quiz_id = {id} """
                 record = DatabaseConnector.get_records(quiz_query)
                 i = 0
+                self.quiz_question_ids = []
                 while i < 20: # works only if quiz has 20 questions
                     self.quiz_question_ids += [field[i+2] for field in record]
                     i += 1
@@ -56,13 +59,13 @@ class QuizController():
         all_q_index = 0
         the_q_index = 0
         correct_q_count = 0
+        self.q_given_answers = []
         
         while the_q_index < len(self.quiz_question_ids): # WATCH OUT STACK OVERFLOW!
             if self.quiz_question_ids[the_q_index] != self.question_ids[all_q_index]: 
                 all_q_index += 1
                 continue # only works correctly if ids are ordered ascendingly
 
-            
             print(self.get_question(all_q_index, the_q_index))
             answer = self.convert_answer_to_number(input("Answer: "))
 
@@ -70,9 +73,11 @@ class QuizController():
                 the_q_index += 1
                 correct_q_count += 1
                 all_q_index += 1
+                self.q_given_answers.append(answer)
             elif answer in (1, 2, 3, 4):
                 the_q_index += 1
                 all_q_index += 1
+                self.q_given_answers.append(answer)
             elif answer == 0:
                 print("Quiz is quitted.")
                 break
@@ -81,8 +86,19 @@ class QuizController():
         
         self.show_results(the_q_index, correct_q_count)
 
+    def save_result(self, user_id):
+        result_query = f""" INSERT INTO user_quiz_results(user_id, quiz_id, q_answer_1, 
+        q_answer_2, q_answer_3, q_answer_4, q_answer_5, q_answer_6, q_answer_7, q_answer_8,
+        q_answer_9, q_answer_10, q_answer_11, q_answer_12, q_answer_13, q_answer_14, 
+        q_answer_15, q_answer_16, q_answer_17, q_answer_18, q_answer_19, q_answer_20)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+            %s, %s, %s, %s, %s); """
+        result_values = (user_id, self.quiz_id) + tuple(self.q_given_answers) + \
+                (None,) * (20 - len(self.q_given_answers))
+
+        DatabaseConnector.insert_record(result_query, result_values)
+
     def get_question(self, q_index, q_number):
-        
         return (f"\n{q_number+1} - {self.questions[q_index]}\n"
                 f"A) {self.opt_a[q_index]}\nB) {self.opt_b[q_index]}\n"
                 f"C) {self.opt_c[q_index]}\nD) {self.opt_d[q_index]}\n")
