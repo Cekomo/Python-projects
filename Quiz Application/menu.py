@@ -1,9 +1,10 @@
 import time
 
 class MenuController():
-    def __init__(self, user_class, quiz_class):
+    def __init__(self, user_class, quiz_class, answer_class):
         self.user_class = user_class
         self.quiz_class = quiz_class
+        self.q_a_class = answer_class
 
     def greet_user(self):
         print("Welcome to quiz application, please enter ",
@@ -36,6 +37,7 @@ class MenuController():
                 navigator = input("Go to: ")
                 
                 if navigator == '1':
+                    q_given_answers = []
                     print("What type of quiz would you like to solve? "
                           "Please enter respective number.\n")
                     i = 1
@@ -46,8 +48,9 @@ class MenuController():
                     navigator = input("Solve: ")
                     self.quiz_class.quiz_id = navigator
                     self.quiz_class.prepare_quiz_questions(navigator)
-                    self.quiz_class.control_quiz()
-                    self.quiz_class.save_result(self.user_class.user_id)
+                    self.quiz_class.control_quiz(q_given_answers)
+                    self.q_a_class.save_result(self.user_class.user_id, 
+                                                self.quiz_class.quiz_id, q_given_answers)
                     
                 elif navigator == '2':
                     pass

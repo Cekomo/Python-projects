@@ -1,11 +1,13 @@
 from menu import MenuController
 from user import UserController
 from quiz import QuizController
+from quiz_result import QuizAnswersController
 from database import DatabaseConnector
 
 uc = UserController()
 qc = QuizController()
-mc = MenuController(uc, qc)
+ac = QuizAnswersController()
+mc = MenuController(uc, qc, ac)
 
 account_query = """ SELECT * FROM users; """
 records = DatabaseConnector.get_records(account_query)
