@@ -5,6 +5,7 @@ class QuizResultController():
         self.solved_quiz_types = []
         self.quiz_ids = []
         self.quiz_categories = []
+        self.solved_quizes = []
 
     def save_result(self, user_id, category, quiz_id, users_answers):
         result_query = f""" INSERT INTO quiz_results(user_id, quiz_id, quiz_category, q_answer_1, 
@@ -24,9 +25,9 @@ class QuizResultController():
             WHERE user_id = {user_id}
             ORDER BY quiz_category ASC;
         """
-        solved_quizes = DatabaseConnector.get_records(solved_quizes_query)
-        self.quiz_ids = [row[2] for row in solved_quizes]
-        self.quiz_categories = [row[3] for row in solved_quizes]
+        self.solved_quizes = DatabaseConnector.get_records(solved_quizes_query)
+        self.quiz_ids = [row[2] for row in self.solved_quizes]
+        self.quiz_categories = [row[3] for row in self.solved_quizes]
 
     def show_solved_quizes(self):
         i = 1
@@ -34,15 +35,12 @@ class QuizResultController():
             print(f"{i} - {category}")
             i += 1
 
-    def show_quiz_result(self, user_id, quiz_id):
-        result_query = f"""
-            SELECT * FROM quiz_results
-            WHERE user_id = {user_id} AND quiz_id = {quiz_id}
-            LIMIT 1;
-        """
-        solved_quizes = DatabaseConnector.get_records(result_query)
-        result_record = []
-        for field in solved_quizes:
-            result_record += field
+    def show_quiz_result(self, result_index):
+        # result_query = f"""
+        #     SELECT * FROM quiz_results
+        #     WHERE user_id = {user_id} AND quiz_id = {quiz_id}
+        #     LIMIT 1;
+        # """
 
+        result_record = self.solved_quizes[result_index]
         print(result_record)

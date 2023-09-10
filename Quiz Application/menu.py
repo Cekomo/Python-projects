@@ -48,11 +48,11 @@ class MenuController():
                         i += 1
 
                     while True:
-                        navigator = input("Solve: ")
-                        if navigator.isdigit(): break
-                    category = self.quiz_class.quiz_categories[int(navigator)-1]
-                    self.quiz_class.quiz_id = navigator
-                    self.quiz_class.prepare_quiz_questions(navigator)
+                        category_index = input("Solve: ")
+                        if category_index.isdigit(): break
+                    category = self.quiz_class.quiz_categories[int(category_index)-1]
+                    self.quiz_class.quiz_id = category_index
+                    self.quiz_class.prepare_quiz_questions(category_index)
                     self.quiz_class.control_quiz(q_given_answers)
                     self.q_a_class.save_result(self.user_class.user_id, category,
                                                self.quiz_class.quiz_id, q_given_answers)
@@ -61,9 +61,10 @@ class MenuController():
                     self.q_a_class.prepare_result_list(self.user_class.user_id)
                     self.q_a_class.show_solved_quizes()
                     while True:
-                        navigator = input("Select: ")
-                        if navigator.isdigit(): break
-
+                        result_index = input("Select an index: ")
+                        if result_index.isdigit(): break
+                        
+                    self.q_a_class.show_quiz_result(int(result_index)-1)
                     
                 elif navigator == '0':
                     print("Logged out.")
