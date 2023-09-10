@@ -94,3 +94,9 @@ class QuizController():
         s = 's' if q_index != 1 else ''
         print(f"\n{q_index} question{s} answered"
               f"\nCorrect answer count: {correct_q_count}")
+        
+    def get_quiz_answer_key(self, quiz_category):
+        quiz_query = f""" SELECT * FROM quizes
+                    WHERE quiz_category = '{quiz_category}' LIMIT 1""" 
+        answer_key = DatabaseConnector.get_records(quiz_query)
+        return answer_key
