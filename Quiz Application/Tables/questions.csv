@@ -1,0 +1,142 @@
+question_id,question_text,a_option,b_option,c_option,d_option,correct_option,question_category
+3,What computer component became an inspiration for Daft Punk's album name.,CPU,RAM,Motherboard,SSD,2,Music
+4,Which two materials does bronze alloy consist of?,Copper and Tin,Copper and Silver,Copper and Iron,Copper and Gold,1,Chemistry
+12,What is the chemical symbol for gold?,Go,Au,Ag,Ge,2,Chemistry
+2,When did World War I break out?,1911,1914,1918,1921,2,History
+15,"Who wrote the play '"Romeo and Juliet'"?",William Shakespeare,Charles Dickens,Jane Austen,Leo Tolstoy,1,History
+6,Vaccine of what desease is discovered by Louis Pasteur?,COVID-19,Hepatitis B,Rabies,Hepatitis A,3,Science
+9,What is the largest planet in our solar system?,Mars,Venus,Jupiter,Saturn,3,Science
+10,Which famous scientist is known for the theory of relativity?,Isaac Newton,Galileo Galilei,Albert Einstein,Stephen Hawking,3,Science
+16,Which gas makes up the majority of Earth's atmosphere?,Oxygen,Carbon Dioxide,Nitrogen,Hydrogen,3,Science
+17,"Which planet in our solar system is known as the '"Red Planet'"?",Venus,Mars,Jupiter,Neptune,2,Science
+18,What is the largest organ in the human body?,Brain,Liver,Skin,Heart,3,Science
+5,What is the result of this operation (6 / 2 * (1 + 2))?,1,3,5,9,4,Mathematics
+29,What is the boiling point of water in degrees Celsius?,100°C,0°C,50°C,200°C,1,Chemistry
+1,What is the capital of Norway?,Belgrad,Berlin,Oslo,Sydney,3,Geography
+7,Which country does not have a coastline on any sea or ocean?,Iran,Argentina,Croatia,Afghanistan,4,Geography
+13,Which country is known as the Land of the Rising Sun?,China,South Korea,Japan,Thailand,3,Geography
+8,What is the name of a team that is eliminated by France in 2022 World Cup?,Argentina,Croatia,Morocco,Germany,3,Sports
+14,What is the largest mammal on Earth?,Elephant,Blue Whale,Giraffe,Hippopotamus,2,Animals
+11,Which of the following is a primary color used in subtractive color mixing?,Green,Blue,Red,Yellow,3,Art
+19,"Who is the author of '"To Kill a Mockingbird'"?",F. Scott Fitzgerald,Harper Lee,J.K. Rowling,George Orwell,2,Literature
+20,What is the chemical symbol for silver?,Ag,Si,Au,Hg,1,Chemistry
+21,In which year did the Titanic sink?,1912,1923,1931,1945,1,History
+22,Who painted the Mona Lisa?,Vincent van Gogh,Leonardo da Vinci,Pablo Picasso,Rembrandt,2,Art
+23,What is the capital of Brazil?,Buenos Aires,Brasília,Rio de Janeiro,São Paulo,2,Geography
+24,Which gas do plants absorb from the atmosphere during photosynthesis?,Oxygen,Carbon Dioxide,Nitrogen,Hydrogen,2,Biology
+25,What is the largest desert in the world?,Sahara Desert,Gobi Desert,Atacama Desert,Antarctica,1,Geography
+26,Who is known as the father of modern physics?,Isaac Newton,Galileo Galilei,Albert Einstein,Niels Bohr,3,Science
+27,What is the chemical symbol for water?,Wa,H2O,O2,H2,2,Chemistry
+28,"Who wrote the play '"Hamlet'"?",William Shakespeare,Charles Dickens,Jane Austen,Leo Tolstoy,1,Literature
+30,Who was the first woman to fly solo across the Atlantic Ocean?,Amelia Earhart,Bessie Coleman,Harriet Quimby,Jacqueline Cochran,1,History
+31,What is the capital of Australia?,Melbourne,Sydney,Canberra,Perth,3,Geography
+32,"Which planet is known as the '"Morning Star'" or '"Evening Star'"?",Mars,Venus,Jupiter,Saturn,2,Astronomy
+33,"Who is the author of '"1984'"?",Aldous Huxley,George Orwell,Ray Bradbury,H.G. Wells,2,Literature
+34,Who is the lead singer of the rock band Queen?,John Lennon,Elton John,Freddie Mercury,Mick Jagger,3,Music
+35,What is the capital of China?,Beijing,Shanghai,Hong Kong,Taipei,1,Geography
+36,Which gas do humans exhale when they breathe out?,Oxygen,Carbon Dioxide,Nitrogen,Argon,2,Biology
+37,What is the largest ocean in the world?,Atlantic Ocean,Indian Ocean,Arctic Ocean,Pacific Ocean,4,Geography
+38,Who discovered penicillin?,Alexander Fleming,Marie Curie,Louis Pasteur,Gregor Mendel,1,Science
+39,What is the smallest planet in our solar system?,Mars,Venus,Mercury,Earth,3,Astronomy
+40,In which country is the Great Barrier Reef located?,Australia,Indonesia,Thailand,Philippines,1,Geography
+41,What is the chemical symbol for carbon?,C,Co,Ca,Cu,1,Chemistry
+42,"Who wrote '"The Catcher in the Rye'"?",J.D. Salinger,F. Scott Fitzgerald,Ernest Hemingway,Mark Twain,1,Literature
+43,What is the capital of Russia?,Moscow,St. Petersburg,Kiev,Minsk,1,Geography
+44,Which gas is responsible for the green color of plants?,Oxygen,Carbon Dioxide,Nitrogen,Hydrogen,2,Biology
+45,What is the highest mountain in the world?,Mount Kilimanjaro,Mount McKinley,Mount Everest,Mount Fuji,3,Geography
+46,"Who is known as the '"Father of the Atomic Bomb'"?",Albert Einstein,Niels Bohr,Werner Heisenberg,J. Robert Oppenheimer,4,Science
+47,What is the chemical symbol for nitrogen?,Ni,N,Na,Ne,2,Chemistry
+48,Which gas is responsible for the smell of rotten eggs?,Oxygen,Carbon Dioxide,Hydrogen Sulfide,Methane,3,Chemistry
+49,"Who painted the '"Starry Night'"?",Vincent van Gogh,Leonardo da Vinci,Pablo Picasso,Rembrandt,1,Art
+50,What is the capital of Spain?,Barcelona,Madrid,Seville,Valencia,2,Geography
+51,What is the chemical symbol for oxygen?,O,Ox,Oy,O2,1,Chemistry
+52,In which country was the sport of tennis first played?,England,France,Spain,Australia,1,Sports
+53,What is the largest species of shark?,Great White Shark,Hammerhead Shark,Whale Shark,Tiger Shark,3,Biology
+54,What is the capital of South Africa?,Cape Town,Durban,Pretoria,Johannesburg,3,Geography
+55,Which gas is used in balloons to make them float?,Oxygen,Carbon Dioxide,Helium,Hydrogen,3,Chemistry
+56,What is the largest moon in the solar system?,Luna,Phobos,Ganymede,Titan,3,Astronomy
+57,Who was the first woman to win a Nobel Prize?,Marie Curie,Rosa Parks,Eleanor Roosevelt,Mother Teresa,1,Science
+58,What is the chemical symbol for helium?,He,H,Hy,Hel,1,Chemistry
+59,In which year did Christopher Columbus first reach the Americas?,1492,1521,1607,1776,1,History
+60,What is the largest planet in our solar system by volume?,Mars,Venus,Jupiter,Saturn,3,Astronomy
+61,How many bones are in the human body?,200,206,220,240,2,Science
+62,Roughly how long does it take for the sun's light to reach Earth?,1 minute,1 hour,8 minutes,8 hours,3,Science
+63,At what temperature are Celsius and Fahrenheit equal?,-40 degrees,-32 degrees,0 degrees,100 degrees,1,Science
+64,How many teeth does an adult human have?,28,30,32,34,3,Science
+65,How many vertebrae (backbone part) does the average human possess?,24,26,28,30,2,Science
+66,What is the only letter not to appear on the periodic table?,J,Q,X,Z,1,Science
+67,Which famous British physicist wrote A Brief History of Time?,Stephen Hawking,Albert Einstein,Isaac Newton,Neil deGrasse Tyson,1,Science
+68,What are natural satellites colloquially known as?,Comets,Asteroids,Planets,Moons,4,Science
+69,Where can you find the smallest bone in the human body?,Ear,Nose,Hand,Foot,1,Science
+70,Dolly was the first ever living creature to be cloned. What type of animal was she?,Dog,Cat,Sheep,Horse,3,Science
+71,What planet is closest to Earth?,Mars,Venus,Jupiter,Saturn,2,Geography
+72,What is the name of the river that flows through the Brazilian rainforest?,Amazon River,Nile River,Congo River,Yangtze River,1,Geography
+73,What country has the most natural lakes?,Canada,Russia,United States,Sweden,1,Geography
+74,Which continent is Cambodia located in?,Asia,Africa,South America,Australia,1,Geography
+75,What is the coldest state in the US?,Alaska,North Dakota,Minnesota,Maine,1,Geography
+76,Which country was not part of the Soviet Union?,Ukraine,Latvia,Czech Republic,Kazakhstan,3,Geography
+77,What is the name of the US state that is an island?,Hawaii,Alaska,Rhode Island,Florida,1,Geography
+78,"One of the ancient world wonders, the “Hanging Gardens,” was found in which city?",Babylon,Athens,Rome,Jerusalem,1,History
+79,"Who was the first man to walk on the moon, and in which year?",Neil Armstrong - 1969,Buzz Aldrin - 1967,Yuri Gagarin - 1961,John Glenn - 1958,1,History
+80,Who built the first car in America?,Henry Ford,Thomas Edison,Alexander Graham Bell,Wright Brothers,1,History
+81,What is the name of the first human civilization?,Sumer,Egypt,Indus Valley,Mesoamerica,1,History
+82,Which century did the French Revolution take place in?,16th century,17th century,18th century,19th century,3,History
+83,Who led the USSR from 1917-1922?,Joseph Stalin,Vladimir Lenin,Leon Trotsky,Mikhail Gorbachev,2,History
+84,Who invented the telephone?,Thomas Edison,Nikola Tesla,Alexander Graham Bell,Marconi,3,History
+85,Where was Adolf Hitler born?,Austria,Germany,Poland,Hungary,1,History
+86,Who created the first successful printing press?,Johannes Kepler,Gutenberg,Galileo Galilei,Isaac Newton,2,History
+87,What famous 5th century A.D. conqueror was known as “The Scourge of God”?,Attila the Hun,Julius Caesar,Genghis Khan,Alexander the Great,1,History
+88,"Who orchestrated a terrorist attack against the United States on September 11th, 2001?",Saddam Hussein,Osama bin Laden,Muammar Gaddafi,Ayman al-Zawahiri,2,History
+89,"Along with Hiroshima, Japan, which Japanese city was hit by an atomic bomb in 1945?",Nagasaki,Tokyo,Kyoto,Osaka,1,History
+90,The Cuban Revolution led to the rise of what dictator?,Fidel Castro,Hugo Chávez,Augusto Pinochet,Che Guevara,1,History
+91,Where was Cleopatra’s birthplace?,Athens,Rome,Alexandria,Thebes,3,History
+92,The Cold War was between the United States and what other world power?,China,Germany,Soviet Union,Japan,3,History
+93,"Which element is used as a disinfectant, a bleaching agent and to purify water?",Chlorine,Sodium,Potassium,Magnesium,1,Chemistry
+94,What raw material is used for making glass?,Sand,Clay,Coal,Iron,1,Chemistry
+95,Steel is an alloy of which 2 substances?,Iron and Copper,Iron and Zinc,Iron and Carbon,Iron and Aluminum,3,Chemistry
+96,What element is metal and liquid at the same time?,Mercury,Copper,Aluminum,Silver,1,Chemistry
+97,"Which lightweight metal is used in the manufacture of aircraft, cars, and ships?",Aluminum,Titanium,Magnesium,Copper,1,Chemistry
+98,What common chemical compound is represented by the formula NH2?,Ammonia,Nitrous Oxide,Hydrochloric Acid,Sulfuric Acid,1,Chemistry
+99,What was the most widely prescribed antidepressant in the U.S. in the 1990s?,Prozac,Zoloft,Paxil,Lexapro,1,Chemistry
+100,Which scientist was the first to receive the Nobel prize twice?,Marie Curie,Albert Einstein,Niels Bohr,Isaac Newton,1,Chemistry
+101,Which element discovered in 1898 is associated with Superman?,Krypton,Xenon,Argon,Neon,1,Chemistry
+102,What was Freddie Mercury's real name?,Farrokh Bulsara,John Deacon,Brian May,Roger Taylor,1,Music
+103,Which member of the Avengers had a brief stint as a pop star?,Chris Hemsworth,Brie Larson,Scarlett Johansson,Jeremy Renner,2,Music
+104,"In The Big Lebowski, The Dude can''t stand which band?",The Eagles,Creedence Clearwater Revival,The Rolling Stones,The Doors,1,Music
+105,Jimi Hendrix only had one Top 40 hit. Which song was it?,Purple Haze,All Along the Watchtower,Foxy Lady,Hey Joe,2,Music
+106,Which classical composer was deaf?,Ludwig van Beethoven,Wolfgang Amadeus Mozart,Johann Sebastian Bach,Franz Joseph Haydn,1,Music
+107,"Which astronomer is name-dropped in '"Bohemian Rhapsody?'"",Isaac Newton,Galileo Galilei,Johannes Kepler,Nicolas Copernicus,2,Music
+108,Who is considered as the best drummer of the world?,Keith Moon,Ginger Baker,John Bonham,Buddy Rich,3,Music
+109,"What one-hit wonder act is behind '"Barbie Girl?'"",Vengaboys,Aqua,Eiffel 65,Lou Bega,2,Music
+110,Jared Leto is the frontman of what band?,30 Seconds to Mars,My Chemical Romance,Panic! at the Disco,Fall Out Boy,1,Music
+111,Which Marvel movie's soundtrack won two Grammys?,Black Panther,Guardians of the Galaxy,The Avengers,Spider-Man: Homecoming,1,Music
+112,Which band released the 1987 album Appetite for Destruction?,Bon Jovi,Guns N' Roses,Def Leppard,Motley Crue,2,Music
+113,Who sang the theme song for Titanic?,Celine Dion,Whitney Houston,Mariah Carey,Adele,1,Music
+114,Who is the lead singer of The Rolling Stones?,Mick Jagger,Keith Richards,Ron Wood,Charlie Watts,1,Music
+116,What country is Rihanna from?,United States,United Kingdom,Barbados,Jamaica,3,Music
+117,Ozzy Osbourne was in what heavy metal band?,Metallica,Iron Maiden,Black Sabbath,Slayer,3,Music
+118,What Pink Floyd album inspired a movie by the same name?,The Wall,Wish You Were Here,Dark Side of the Moon,Animals,1,Music
+119,What Disney character did Miley Cyrus play?,Elsa,Anna,Moana,Hannah Montana,4,Music
+120,Who is considered the greatest basketball player of all time?,Kobe Bryant,LeBron James,Michael Jordan,Magic Johnson,3,Sports
+121,In which city did the first modern Olympic Games take place in 1896?,Paris,Athens,London,Rome,2,Sports
+122,Which fighter did not become an actor after their WWE career?,"Dwayne '"The Rock'" Johnson",John Cena,Dave Bautista,Brock Lesnar,4,Sports
+123,"Which country is known for producing some of the greatest soccer players, including Pelé, Ronaldo, and Neymar?",Argentina,Germany,Brazil,France,3,Sports
+124,What is the name of the trophy awarded to the winner of the FIFA World Cup?,Golden Boot,Golden Ball,World Cup Trophy,Golden Glove,3,Sports
+125,"Which athlete is known as '"The Fastest Man on Earth'" due to his sprinting records?",Usain Bolt,Carl Lewis,Jesse Owens,Michael Johnson,1,Sports
+126,What is the highest possible score in a game of bowling?,100,200,300,400,3,Sports
+127,"Which boxer was known as '"The Greatest'" and '"The Champ'" and is considered one of the greatest boxers of all time?",Mike Tyson,Floyd Mayweather,Muhammad Ali,Evander Holyfield,3,Sports
+128,"In which sport is a '"hole-in-one'" a perfect shot?",Golf,Tennis,Soccer,Swimming,1,Sports
+129,Which country has won the most FIFA World Cup championships?,Brazil,Germany,Argentina,Italy,1,Sports
+130,Which athlete has the most Olympic gold medals?,Usain Bolt,Michael Phelps,Serena Williams,Simone Biles,2,Sports
+131,Which football player is famous for sprinting from midfield to the end?,Lionel Messi,Neymar,Cristiano Ronaldo,Kylian Mbappé,3,Sports
+132,Which player died suddenly in a helicopter crash?,Kobe Bryant,LeBron James,Michael Jordan,Stephen Curry,1,Sports
+133,"Which WWE fighter is known for the '"coffin'" finishing move?",John Cena,The Rock,The Undertaker,Stone Cold Steve Austin,3,Sports
+134,Which sport branch is not considered as athletics?,Soccer,Track and Field,Swimming,Gymnastics,1,Sports
+135,What is the name of the 400-meter sprint with 4 runners?,Sprint,Relay,Marathon,Hurdles,2,Sports
+136,What is the standard height of an NBA basketball hoop in meters?,2.45 meters,2.66 meters,3.0 meters,3.05 meters,4,Sports
+137,What is the standard size of a football pitch according to FIFA?,100 x 49 meters,105 x 68 meters,110 x 75 meters,120 x 78 meters,2,Sports
+138,What is the reverse of taking an integral?,Derivative,Differential equation,Limit,Summation,1,Mathematics
+139,Which of the following is the largest species of penguin?,Emperor Penguin,King Penguin,Adélie Penguin,Gentoo Penguin,1,Biology
+140,Which animal's natural habitat is not Australia?,Kangaroo,Koala,Platypus,Tiger,4,Geography
+141,Which species exhibits male parental care by carrying offspring instead of females?,Penguin,Octopus,Seahorse,Kangaroo,3,Biology
+115,"Who did Elton John sing '"Cold Heart'" with?",Freddie Mercury,Dua Lipa,David Bowie,Stevie Wonder,2,Music
