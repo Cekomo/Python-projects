@@ -58,7 +58,8 @@ class QuizController():
         all_q_index = 0
         the_q_index = 0
         correct_q_count = 0
-        
+        print(self.quiz_question_ids)
+        print(self.question_ids)
         while the_q_index < len(self.quiz_question_ids): # WATCH OUT STACK OVERFLOW!
             if self.quiz_question_ids[the_q_index] != self.question_ids[all_q_index]: 
                 all_q_index += 1

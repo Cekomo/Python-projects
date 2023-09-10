@@ -58,9 +58,15 @@ class MenuController():
                                                self.quiz_class.quiz_id, q_given_answers)
                     
                 elif navigator == '2':
-                    self.q_a_class.show_solved_quizes(self.user_class.user_id)
+                    self.q_a_class.prepare_result_list(self.user_class.user_id)
+                    self.q_a_class.show_solved_quizes()
+                    while True:
+                        navigator = input("Select: ")
+                        if navigator.isdigit(): break
+
+                    
                 elif navigator == '0':
-                    print("\nLogged out.")
+                    print("Logged out.")
                     self.user_class.is_logged_in = False
                 else:
                     print("Please enter a valid number.\n")
