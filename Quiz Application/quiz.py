@@ -97,23 +97,29 @@ class QuizController():
         
     def get_question_indexes(self, quiz_category):
         quiz_query = f""" SELECT * FROM quizes
-                    WHERE quiz_category = '{quiz_category}' LIMIT 1""" 
-        answer_key = DatabaseConnector.get_records(quiz_query)
+                    WHERE quiz_category = '{quiz_category}' """ 
+        the_quiz = DatabaseConnector.get_records(quiz_query)
+        the_quiz = list(the_quiz[0])
 
         i = 2
         question_indexes = []
         while i < 22:
-            question_indexes += answer_key[i]
+            question_indexes.append(the_quiz[i])
+            
             i += 1
         return question_indexes
     
     def get_quiz_query(self, question_indexes):
-        questions_query = "SELECT * FROM quizes WHERE question_id IN ("
+        questions_query = "SELECT * FROM questions WHERE question_id IN ("
+        i = 0
         for index in question_indexes:
-            questions_query += index
-            if index < len(question_indexes):
+            questions_query += str(index)
+            i += 1
+            if i < len(question_indexes):
                 questions_query += ", "
+            
         questions_query += ");"
+        print(questions_query)
         return questions_query
     
     def show_quiz_answers(self, questions_query, quiz_result):
@@ -121,9 +127,9 @@ class QuizController():
         i = 4
         for q in questions:
             if q[6] == quiz_result[i]:
-                print(f"Question: {q[1]}| Answer correct: {quiz_result[i]}")
+                print(f"Question: {q[1]} | Answer correct: {quiz_result[i]}")
             else:
-                print(f"Question: {q[1]}| Incorrect answer: {quiz_result[i]},"
+                print(f"Question: {q[1]} | Incorrect answer: {quiz_result[i]},"
                       f" correct answer was {q[6]}")
             i += 1
 

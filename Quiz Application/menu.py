@@ -64,10 +64,11 @@ class MenuController():
                         result_index = input("Select an index: ")
                         if result_index.isdigit(): break
                         
-                    self.q_a_class.show_quiz_result(int(result_index)-1)
-                    print(self.quiz_class.get_quiz_questions(self.q_a_class.solved_quiz_type))
-                    question_indexes = self.quiz_class.get_quiz_questions(self.q_a_class.quiz_category)
-                    self.quiz_class.show_quiz_answers(question_indexes)
+                    # self.q_a_class.quiz_result_record = self.q_a_class.solved_quizes[int(result_index)-1]
+                    self.q_a_class.prepare_quiz_parameters(int(result_index)-1)
+                    question_indexes = self.quiz_class.get_question_indexes(self.q_a_class.solved_quiz_type)
+                    questions_query = self.quiz_class.get_quiz_query(question_indexes)
+                    self.quiz_class.show_quiz_answers(questions_query, self.q_a_class.quiz_result_record) 
 
                 elif navigator == '0':
                     print("Logged out.")

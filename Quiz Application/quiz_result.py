@@ -37,9 +37,11 @@ class QuizResultController():
             print(f"{i} - {category}")
             i += 1
 
-    def show_quiz_result(self, result_index):
+    def prepare_quiz_parameters(self, result_index):
         self.quiz_result_record = self.solved_quizes[result_index]
         self.solved_quiz_type = self.quiz_result_record[3]
-        print(self.quiz_result_record)
+
+
+        # print(self.quiz_result_record)
 
     
