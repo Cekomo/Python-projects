@@ -40,3 +40,5 @@ class QuizResultController():
         result_record = self.solved_quizes[result_index]
         self.solved_quiz_type = result_record[3]
         print(result_record)
+
+    
