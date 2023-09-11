@@ -116,5 +116,17 @@ class QuizController():
         questions_query += ");"
         return questions_query
     
-    def show_quiz_result(self, questions_query):
-        
+    def show_quiz_answers(self, questions_query, quiz_result):
+        questions = self.get_quiz_questions(questions_query)
+        i = 4
+        for q in questions:
+            if q[6] == quiz_result[i]:
+                print(f"Question: {q[1]}| Answer correct: {quiz_result[i]}")
+            else:
+                print(f"Question: {q[1]}| Incorrect answer: {quiz_result[i]},"
+                      f" correct answer was {q[6]}")
+            i += 1
+
+    def get_quiz_questions(self, questions_query):
+        questions = DatabaseConnector.get_records(questions_query)
+        return questions    

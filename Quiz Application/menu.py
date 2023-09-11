@@ -66,8 +66,9 @@ class MenuController():
                         
                     self.q_a_class.show_quiz_result(int(result_index)-1)
                     print(self.quiz_class.get_quiz_questions(self.q_a_class.solved_quiz_type))
-                    self.quiz_class.get_quiz_questions(self.q_a_class.quiz_category)
-                    
+                    question_indexes = self.quiz_class.get_quiz_questions(self.q_a_class.quiz_category)
+                    self.quiz_class.show_quiz_answers(question_indexes)
+
                 elif navigator == '0':
                     print("Logged out.")
                     self.user_class.is_logged_in = False

@@ -3,6 +3,7 @@ from database import DatabaseConnector
 class QuizResultController():
     def __init__(self):
         self.solved_quiz_type = ""
+        self.quiz_result_record = []
         self.solved_quiz_types = []
         self.quiz_ids = []
         self.quiz_categories = []
@@ -37,8 +38,8 @@ class QuizResultController():
             i += 1
 
     def show_quiz_result(self, result_index):
-        result_record = self.solved_quizes[result_index]
-        self.solved_quiz_type = result_record[3]
-        print(result_record)
+        self.quiz_result_record = self.solved_quizes[result_index]
+        self.solved_quiz_type = self.quiz_result_record[3]
+        print(self.quiz_result_record)
 
     
