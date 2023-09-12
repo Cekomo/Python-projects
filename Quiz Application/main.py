@@ -21,4 +21,4 @@ records = DatabaseConnector.get_records(quiz_query)
 qc.prepare_quiz_parameters(records)
 
 mc.greet_user()
-mc.control_menu()
+mc.control_main_menu()

@@ -40,8 +40,4 @@ class QuizResultController():
     def prepare_quiz_parameters(self, result_index):
         self.quiz_result_record = self.solved_quizes[result_index]
         self.solved_quiz_type = self.quiz_result_record[3]
-
-
-        # print(self.quiz_result_record)
-
     
