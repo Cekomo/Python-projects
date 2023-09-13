@@ -55,27 +55,27 @@ class QuizController():
             return -1
 
     def control_quiz(self, q_given_answers):
-        all_q_index = 0
-        the_q_index = 0
+        all_questions_index = 0
+        quiz_question_index = 0
         correct_q_count = 0
-        print(self.quiz_question_ids)
-        print(self.question_ids)
-        while the_q_index < len(self.quiz_question_ids): # WATCH OUT STACK OVERFLOW!
-            if self.quiz_question_ids[the_q_index] != self.question_ids[all_q_index]: 
-                all_q_index += 1
+    
+        while quiz_question_index < len(self.quiz_question_ids): # WATCH OUT STACK OVERFLOW!
+            if (self.quiz_question_ids[quiz_question_index] 
+                != self.question_ids[all_questions_index]): 
+                all_questions_index += 1
                 continue # only works correctly if ids are ordered ascendingly
 
-            print(self.get_question(all_q_index, the_q_index))
+            print(self.get_question(all_questions_index, quiz_question_index))
             answer = self.convert_answer_to_number(input("Answer: "))
 
-            if answer == self.answers[all_q_index]:
-                the_q_index += 1
+            if answer == self.answers[all_questions_index]:
+                quiz_question_index += 1
                 correct_q_count += 1
-                all_q_index += 1
+                all_questions_index += 1
                 q_given_answers.append(answer)
             elif answer in (1, 2, 3, 4):
-                the_q_index += 1
-                all_q_index += 1
+                quiz_question_index += 1
+                all_questions_index += 1
                 q_given_answers.append(answer)
             elif answer == 0:
                 print("Quiz is quitted.")
@@ -83,7 +83,7 @@ class QuizController():
             else:
                 print("Please enter a valid answer.")
         
-        self.show_results(the_q_index, correct_q_count)
+        self.show_results(quiz_question_index, correct_q_count)
 
     def get_question(self, q_index, q_number):
         return (f"\n{q_number+1} - {self.questions[q_index]}\n"

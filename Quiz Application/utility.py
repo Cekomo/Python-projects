@@ -9,3 +9,5 @@ class UtilityClass():
             if category_index.isdigit(): 
                 print()
                 return category_index
+            print("Please enter a number corresponding a section.")
+        print()
