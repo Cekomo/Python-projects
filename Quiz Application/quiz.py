@@ -29,16 +29,20 @@ class QuizController():
         self.quiz_categories = [row[1] for row in quizes]
 
     def prepare_quiz_questions(self, quiz_id):
+        the_id = ""
         for id in self.quiz_ids:
             if quiz_id == str(id):
-                quiz_query = f""" SELECT * FROM quizes
-                    WHERE quiz_id = {id} """ 
-                record = DatabaseConnector.get_records(quiz_query)
-                i = 0
-                self.quiz_question_ids = []
-                while i < 20: # works only if quiz has 20 questions
-                    self.quiz_question_ids += [field[i+2] for field in record]
-                    i += 1
+                the_id = id
+
+        quiz_query = f""" SELECT * FROM quizes
+            WHERE quiz_id = {the_id} """ 
+        record = DatabaseConnector.get_records(quiz_query)
+        i = 0
+        self.quiz_question_ids = []
+        while i < 20: # works only if quiz has 20 questions
+            self.quiz_question_ids += [field[i+2] for field in record]
+            i += 1
+            
 
     def convert_answer_to_number(self, answer):
         if answer in ('a','A','1'):
@@ -59,7 +63,7 @@ class QuizController():
         quiz_question_index = 0
         correct_q_count = 0
     
-        while quiz_question_index < len(self.quiz_question_ids): # WATCH OUT STACK OVERFLOW!
+        while quiz_question_index < len(self.quiz_question_ids):
             if (self.quiz_question_ids[quiz_question_index] 
                 != self.question_ids[all_questions_index]): 
                 all_questions_index += 1
@@ -68,20 +72,18 @@ class QuizController():
             print(self.get_question(all_questions_index, quiz_question_index))
             answer = self.convert_answer_to_number(input("Answer: "))
 
-            if answer == self.answers[all_questions_index]:
-                quiz_question_index += 1
-                correct_q_count += 1
-                all_questions_index += 1
-                q_given_answers.append(answer)
-            elif answer in (1, 2, 3, 4):
-                quiz_question_index += 1
-                all_questions_index += 1
-                q_given_answers.append(answer)
-            elif answer == 0:
+            if answer == 0:
                 print("Quiz is quitted.")
                 break
-            else:
+            elif answer not in (1, 2, 3, 4):
                 print("Please enter a valid answer.")
+                continue
+
+            quiz_question_index += 1
+            all_questions_index += 1
+            q_given_answers.append(answer)
+            if answer == self.answers[all_questions_index]:
+                correct_q_count += 1
         
         self.show_results(quiz_question_index, correct_q_count)
 
