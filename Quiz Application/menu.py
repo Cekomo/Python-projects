@@ -23,6 +23,7 @@ class MenuController():
             else:
                 self.display_main_menu()
                 navigator = util.get_valid_input("Go to: ")
+                if navigator == '0': break
                 self.control_account_menu(navigator)
 
     def display_main_menu(self):
@@ -31,16 +32,13 @@ class MenuController():
     def display_quiz_menu(self):
         print("\n1 - Select quiz!\n2 - Review quiz score\n0 - Log out")
 
-    def control_account_menu(self, navigator): # I am not sure if returning false will fix termination issue
+    def control_account_menu(self, navigator):
         if navigator == '1':
             self.user_class.check_account_inquiry()
         elif navigator == '2':
             self.user_class.register_account()
-        elif navigator == '0':
-            return False 
         else:
-            print("Please enter a valid number.\n")
-        return True
+            print("Please enter a valid number.")
 
     def control_quiz_menu(self, navigator):
         if navigator == '1':
@@ -51,7 +49,7 @@ class MenuController():
             self.user_class.is_logged_in = False
             print("Logged out.")
         else:
-            print("Please enter a valid number.\n")
+            print("Please enter a valid number.")
 
     def start_quiz(self):
         q_given_answers = []

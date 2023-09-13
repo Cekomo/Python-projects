@@ -35,13 +35,15 @@ class QuizController():
                 the_id = id
 
         quiz_query = f""" SELECT * FROM quizes
-            WHERE quiz_id = {the_id} """ 
+            WHERE quiz_id = {the_id}; """ 
         record = DatabaseConnector.get_records(quiz_query)
         i = 0
-        self.quiz_question_ids = []
+        question_ids = []
         while i < 20: # works only if quiz has 20 questions
-            self.quiz_question_ids += [field[i+2] for field in record]
+            question_ids += [field[i+2] for field in record]
             i += 1
+        self.quiz_question_ids = sorted(question_ids)
+        print(self.quiz_question_ids)
             
 
     def convert_answer_to_number(self, answer):
@@ -64,10 +66,10 @@ class QuizController():
         correct_q_count = 0
     
         while quiz_question_index < len(self.quiz_question_ids):
-            if (self.quiz_question_ids[quiz_question_index] 
+            if (self.quiz_question_ids[quiz_question_index] # requires ascending order
                 != self.question_ids[all_questions_index]): 
                 all_questions_index += 1
-                continue # only works correctly if ids are ordered ascendingly
+                continue 
 
             print(self.get_question(all_questions_index, quiz_question_index))
             answer = self.convert_answer_to_number(input("Answer: "))
@@ -121,7 +123,6 @@ class QuizController():
                 questions_query += ", "
             
         questions_query += ");"
-        print(questions_query)
         return questions_query
     
     def show_quiz_answers(self, questions_query, quiz_result):
