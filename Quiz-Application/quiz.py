@@ -1,28 +1,14 @@
 from database import DatabaseConnector
 
 class QuizController():
-    def __init__(self):   
+    def __init__(self, question_class):   
+        self.QSC = question_class
+
         self.quiz_id = 0
         self.quiz_category = ""
-        self.question_ids = []     
-        self.questions = []
-        self.opt_a = []
-        self.opt_b = [] 
-        self.opt_c = []
-        self.opt_d = []
-        self.answers = []
         self.quiz_ids = []
         self.quiz_categories = []
         self.quiz_question_ids = []
-    
-    def prepare_question_parameters(self, questions):
-        self.question_ids = [row[0] for row in questions]
-        self.questions = [row[1] for row in questions]
-        self.opt_a = [row[2] for row in questions]
-        self.opt_b = [row[3] for row in questions]
-        self.opt_c = [row[4] for row in questions]
-        self.opt_d = [row[5] for row in questions]
-        self.answers = [row[6] for row in questions]
 
     def prepare_quiz_parameters(self, quizes):
         self.quiz_ids = [row[0] for row in quizes]
@@ -45,7 +31,6 @@ class QuizController():
         self.quiz_question_ids = sorted(question_ids)
         print(self.quiz_question_ids)
             
-
     def convert_answer_to_number(self, answer):
         if answer in ('a','A','1'):
             return 1
@@ -66,12 +51,13 @@ class QuizController():
         correct_q_count = 0
     
         while quiz_question_index < len(self.quiz_question_ids):
+            print(self.QSC.question_ids)
             if (self.quiz_question_ids[quiz_question_index] # requires ascending order
-                != self.question_ids[all_questions_index]): 
+                != self.QSC.question_ids[all_questions_index]): 
                 all_questions_index += 1
                 continue 
 
-            print(self.get_question(all_questions_index, quiz_question_index))
+            print(self.QSC.get_question(self.QSC, all_questions_index, quiz_question_index))
             answer = self.convert_answer_to_number(input("Answer: "))
 
             if answer == 0:
@@ -84,16 +70,11 @@ class QuizController():
             quiz_question_index += 1
             all_questions_index += 1
             q_given_answers.append(answer)
-            if answer == self.answers[all_questions_index]:
+            if answer == self.QSC.answers[all_questions_index]:
                 correct_q_count += 1
         
         self.show_results(quiz_question_index, correct_q_count)
 
-    def get_question(self, q_index, q_number):
-        return (f"\n{q_number+1} - {self.questions[q_index]}\n"
-                f"A) {self.opt_a[q_index]}\nB) {self.opt_b[q_index]}\n"
-                f"C) {self.opt_c[q_index]}\nD) {self.opt_d[q_index]}\n")
-    
     def show_results(self, q_index, correct_q_count):
         s = 's' if q_index != 1 else ''
         print(f"\n{q_index} question{s} answered"

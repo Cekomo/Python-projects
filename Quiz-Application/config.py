@@ -9,7 +9,7 @@ class ConfigClass:
         try:
             config.read('config.ini')
             hostname = socket.gethostname()
-            username = config.get(hostname, 'username', fallback='default_username')
+            username = config.get(hostname, 'username', fallback='postgres')
             return username
         except (configparser.Error, OSError) as e:
             print(f"Error: {e}")
