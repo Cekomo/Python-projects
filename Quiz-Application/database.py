@@ -1,4 +1,5 @@
 import psycopg2
+from config import ConfigClass
 
 class DatabaseConnector():
 
@@ -6,7 +7,7 @@ class DatabaseConnector():
     def get_database_connection():
         return psycopg2.connect(
         dbname="quiz_db",
-        user="postgres",
+        user=ConfigClass.get_username(),
         password="3204965",
         host="localhost",
         port="5432"
