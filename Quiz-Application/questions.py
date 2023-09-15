@@ -25,3 +25,17 @@ class QuestionController():
         return (f"\n{q_number+1} - {instance.questions[q_index]}\n"
                 f"A) {instance.options_a[q_index]}\nB) {instance.options_b[q_index]}\n"
                 f"C) {instance.options_c[q_index]}\nD) {instance.options_d[q_index]}\n")
+    
+    @staticmethod
+    def get_question_indexes(quiz_category):
+        quiz_query = f""" SELECT * FROM quizes
+                    WHERE quiz_category = '{quiz_category}' """ 
+        the_quiz = DC.get_records(quiz_query)
+        the_quiz = list(the_quiz[0])
+
+        i = 2
+        question_indexes = []
+        while i < 22:
+            question_indexes.append(the_quiz[i])
+            i += 1
+        return question_indexes

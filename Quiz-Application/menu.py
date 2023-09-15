@@ -1,9 +1,11 @@
 import time
 from utility import UtilityClass as util
+from questions import QuestionController as QSC
 
 class MenuController():
     def __init__(self, user_class, quiz_class, answers_class):
         self.user_class = user_class
+        # self.question_class = question_class
         self.quiz_class = quiz_class
         self.answers_class = answers_class
 
@@ -73,7 +75,7 @@ class MenuController():
         self.answers_class.show_solved_quizes()
         result_index = util.get_valid_input("Select an index: ")
         self.answers_class.prepare_quiz_parameters(int(result_index)-1)
-        question_indexes = self.quiz_class.get_question_indexes(
+        question_indexes = QSC.get_question_indexes(
             self.answers_class.solved_quiz_type)
         questions_query = self.quiz_class.get_quiz_query(question_indexes)
         self.quiz_class.show_quiz_answers(
