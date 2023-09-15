@@ -12,12 +12,13 @@ class QuizResultController():
 
     def save_result(self, user_id, category, quiz_id, user_answers, correct_answers):
         if not self.is_category_solved(user_id, category):
-            result_query = f""" INSERT INTO quiz_results(user_id, quiz_id, quiz_category, q_answer_1, 
-            q_answer_2, q_answer_3, q_answer_4, q_answer_5, q_answer_6, q_answer_7, q_answer_8,
-            q_answer_9, q_answer_10, q_answer_11, q_answer_12, q_answer_13, q_answer_14, 
-            q_answer_15, q_answer_16, q_answer_17, q_answer_18, q_answer_19, q_answer_20)
+            result_query = f""" INSERT INTO quiz_results(user_id, quiz_id, quiz_category, 
+            correct_answer_count,q_answer_1, q_answer_2, q_answer_3, q_answer_4, 
+            q_answer_5, q_answer_6, q_answer_7, q_answer_8, q_answer_9, q_answer_10, 
+            q_answer_11, q_answer_12, q_answer_13, q_answer_14, q_answer_15, q_answer_16, 
+            q_answer_17, q_answer_18, q_answer_19, q_answer_20)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-                %s, %s, %s, %s, %s, %s); """
+                %s, %s, %s, %s, %s, %s, %s); """
             result_values = (user_id, quiz_id, category, correct_answers) + \
                     tuple(user_answers) + (None,) * (20 - len(user_answers))
             DatabaseConnector.insert_record(result_query, result_values)
@@ -62,7 +63,6 @@ class QuizResultController():
 
         return correct_answer_counter
             
-
     def is_category_solved(self, user_id, quiz_category):
         result_category_query = f"""
             SELECT correct_answer FROM quiz_results 
