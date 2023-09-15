@@ -45,7 +45,7 @@ class QuizController():
         else:   
             return -1
 
-    def control_quiz(self, q_given_answers):
+    def operate_quiz(self, q_given_answers):
         all_questions_index = 0
         quiz_question_index = 0
         correct_q_count = 0

@@ -21,7 +21,7 @@ class QuizResultController():
 
         DatabaseConnector.insert_record(result_query, result_values)
 
-    def prepare_result_list(self, user_id):
+    def prepare_solved_quiz_list(self, user_id):
         solved_quizes_query = f"""
             SELECT * FROM quiz_results
             WHERE user_id = {user_id}
@@ -31,17 +31,17 @@ class QuizResultController():
         self.quiz_ids = [row[2] for row in self.solved_quizes]
         self.quiz_categories = [row[3] for row in self.solved_quizes]
 
-    def show_solved_quizes(self):
+    def show_solved_quiz_list(self):
         i = 1
         for category in self.quiz_categories:
             print(f"{i} - {category}")
             i += 1
 
-    def prepare_quiz_parameters(self, result_index):
+    def prepare_solved_quiz_parameters(self, result_index):
         self.quiz_result_record = self.solved_quizes[result_index]
         self.solved_quiz_type = self.quiz_result_record[3]
     
-    def show_quiz_answers(self, questions, quiz_result):
+    def show_solved_quiz_evaluation(self, questions, quiz_result):
         i = 4
         for q in questions:
             if q[6] == quiz_result[i]:

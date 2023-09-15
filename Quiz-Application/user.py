@@ -1,5 +1,4 @@
 from database import DatabaseConnector
-from questions import QuestionController
 
 class UserController():
     def __init__(self):

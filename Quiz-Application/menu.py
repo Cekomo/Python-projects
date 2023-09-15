@@ -3,11 +3,11 @@ from utility import UtilityClass as util
 from questions import QuestionController as QSC
 
 class MenuController():
-    def __init__(self, user_class, quiz_class, answers_class):
+    def __init__(self, user_class, quiz_class, result_class):
         self.user_class = user_class
         # self.question_class = question_class
         self.quiz_class = quiz_class
-        self.answers_class = answers_class
+        self.result_class = result_class
 
     def greet_user(self):
         print("Welcome to quiz application, please enter ",
@@ -21,7 +21,7 @@ class MenuController():
             if self.user_class.is_logged_in:
                 self.display_quiz_menu()
                 navigator = util.get_valid_input("Go to: ")                
-                self.control_quiz_menu(navigator)
+                self.operate_quiz_menu(navigator)
             else:
                 self.display_main_menu()
                 navigator = util.get_valid_input("Go to: ")
@@ -42,7 +42,7 @@ class MenuController():
         else:
             print("Please enter a valid number.")
 
-    def control_quiz_menu(self, navigator):
+    def operate_quiz_menu(self, navigator):
         if navigator == '1':
             self.start_quiz()
         elif navigator == '2':
@@ -63,21 +63,22 @@ class MenuController():
             i += 1
 
         category_index = util.get_valid_input("Solve: ")
-        category = self.quiz_class.quiz_categories[int(category_index)-1]
         self.quiz_class.quiz_id = category_index
+        category = self.quiz_class.quiz_categories[int(category_index)-1]
         self.quiz_class.prepare_quiz_questions(category_index)
-        self.quiz_class.control_quiz(q_given_answers)
-        self.answers_class.save_result(self.user_class.user_id, category,
+        self.quiz_class.operate_quiz(q_given_answers)
+        self.result_class.save_result(self.user_class.user_id, category,
                                     self.quiz_class.quiz_id, q_given_answers)
         
     def show_solved_quizes(self):
-        self.answers_class.prepare_result_list(self.user_class.user_id)
-        self.answers_class.show_solved_quizes()
+        self.result_class.prepare_solved_quiz_list(self.user_class.user_id)
+        self.result_class.show_solved_quiz_list()
         result_index = util.get_valid_input("Select an index: ")
-        self.answers_class.prepare_quiz_parameters(int(result_index)-1)
+        self.result_class.prepare_solved_quiz_parameters(int(result_index)-1)
         question_indexes = QSC.get_question_indexes(
-            self.answers_class.solved_quiz_type)
+            self.result_class.solved_quiz_type)
         questions_query = self.quiz_class.get_quiz_query(question_indexes)
-        self.quiz_class.show_quiz_answers(
-            questions_query, 
-            self.answers_class.quiz_result_record) 
+        questions = self.quiz_class.get_quiz_questions(questions_query)
+        self.result_class.show_solved_quiz_evaluation(
+            questions, 
+            self.result_class.quiz_result_record) 
