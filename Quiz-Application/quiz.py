@@ -91,6 +91,6 @@ class QuizController():
         questions_query += ");"
         return questions_query
     
-    def get_quiz_questions(self, questions_query):
+    def get_quiz_questions_record(self, questions_query):
         questions = DatabaseConnector.get_records(questions_query)
         return questions    

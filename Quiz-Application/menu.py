@@ -67,6 +67,9 @@ class MenuController():
         category = self.quiz_class.quiz_categories[int(category_index)-1]
         self.quiz_class.prepare_quiz_questions(category_index)
         self.quiz_class.operate_quiz(q_given_answers)
+        correct_answer_count = self.result_class.get_correct_answer_count(
+            self.get_quiz_records(), 
+        )
         self.result_class.save_result(self.user_class.user_id, category,
                                     self.quiz_class.quiz_id, q_given_answers)
         
@@ -75,10 +78,13 @@ class MenuController():
         self.result_class.show_solved_quiz_list()
         result_index = util.get_valid_input("Select an index: ")
         self.result_class.prepare_solved_quiz_parameters(int(result_index)-1)
+        self.result_class.show_solved_quiz_evaluation(
+            self.get_quiz_record(), 
+            self.result_class.quiz_result_record) 
+        
+    def get_quiz_record(self):
         question_indexes = QSC.get_question_indexes(
             self.result_class.solved_quiz_type)
         questions_query = self.quiz_class.get_quiz_query(question_indexes)
-        questions = self.quiz_class.get_quiz_questions(questions_query)
-        self.result_class.show_solved_quiz_evaluation(
-            questions, 
-            self.result_class.quiz_result_record) 
+        quiz_record = self.quiz_class.get_quiz_questions(questions_query)
+        return quiz_record
