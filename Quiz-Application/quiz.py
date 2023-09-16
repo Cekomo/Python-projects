@@ -29,7 +29,6 @@ class QuizController():
             question_ids += [field[i+2] for field in record]
             i += 1
         self.quiz_question_ids = sorted(question_ids)
-        print(self.quiz_question_ids)
             
     def convert_answer_to_number(self, answer):
         if answer in ('a','A','1'):
@@ -94,3 +93,5 @@ class QuizController():
     def get_quiz_questions_record(self, questions_query):
         questions = DatabaseConnector.get_records(questions_query)
         return questions    
+    
+    

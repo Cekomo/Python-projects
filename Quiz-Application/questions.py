@@ -27,9 +27,9 @@ class QuestionController():
                 f"C) {instance.options_c[q_index]}\nD) {instance.options_d[q_index]}\n")
     
     @staticmethod
-    def get_question_indexes(quiz_category):
+    def get_question_indexes(quiz_id):
         quiz_query = f""" SELECT * FROM quizes
-                    WHERE quiz_category = '{quiz_category}' """ 
+                    WHERE quiz_id = {quiz_id} """ 
         the_quiz = DC.get_records(quiz_query)
         the_quiz = list(the_quiz[0])
 
