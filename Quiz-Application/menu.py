@@ -62,7 +62,8 @@ class MenuController():
             print(f"{i} - {category}")
             i += 1
 
-        category_index = util.get_valid_input("Solve: ")
+        category_index = util.get_valid_input(
+            "Solve: ", len(self.quiz_class.quiz_categories))
         self.quiz_class.quiz_id = category_index
         category = self.quiz_class.quiz_categories[int(category_index)-1]
         self.quiz_class.prepare_quiz_questions(category_index)
