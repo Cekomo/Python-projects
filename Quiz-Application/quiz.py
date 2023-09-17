@@ -67,11 +67,6 @@ class QuizController():
             quiz_question_index += 1
             all_questions_index += 1
             q_given_answers.append(answer)
-
-    def show_result(self, answer_count, correct_q_count):
-        s = 's' if answer_count != 1 else ''
-        print(f"\n{answer_count} question{s} answered"
-              f"\nCorrect answer count: {correct_q_count}")
         
     def get_quiz_query(self, question_indexes):
         questions_query = "SELECT * FROM questions WHERE question_id IN ("

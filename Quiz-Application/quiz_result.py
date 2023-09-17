@@ -57,14 +57,20 @@ class QuizResultController():
         self.solved_quiz_type = self.quiz_result_record[3]
     
     def show_solved_quiz_evaluation(self, questions, quiz_result):
+        correct_answer_count = 0
         i = 4
         for q in questions:
+            if quiz_result[i] == None:
+                break
             if q[6] == quiz_result[i]:
                 print(f"Question: {q[1]} | Answer correct: {quiz_result[i]}")
+                correct_answer_count += 1
             else:
                 print(f"Question: {q[1]} | Incorrect answer: {quiz_result[i]},"
                       f" correct answer was {q[6]}")
             i += 1
+
+        self.calculate_quiz_result(i - 4, correct_answer_count)
 
     def get_correct_answer_count(self, questions, quiz_result):
         answer_index = 0
@@ -90,7 +96,11 @@ class QuizResultController():
     
     def is_category_solved(self, user_id, quiz_category):
         solved_quiz_record = self.get_solved_quiz_result(user_id, quiz_category)
-        self.previous_quiz_correct_answer = int(solved_quiz_record[0][4])
+        try:
+            self.previous_quiz_correct_answer = int(solved_quiz_record[0][4])
+        except:
+            self.previous_quiz_correct_answer = 0
+
         return True if self.previous_quiz_correct_answer != 0 else False
 
     def set_solved_quiz_type(self, category_index):
@@ -98,3 +108,15 @@ class QuizResultController():
                     WHERE quiz_id = {category_index} """
         solved_quiz_record = DatabaseConnector.get_records(quiz_query)
         self.solved_quiz_type = solved_quiz_record[0][1]
+
+    def calculate_quiz_result(self, questions_solved, correct_answer_count):
+        total_question_count = 20
+        question_point = 100 / total_question_count
+
+        print(f"\n{questions_solved} question(s) solved."
+            f"\nYour score is: {question_point*correct_answer_count}")
+        if correct_answer_count >= int(0.7 * total_question_count):
+            print("You have successfuly completed the quiz.")
+        else:
+            print("You failed. At least 70% of the of the questions "
+                  "must be answered correctly to pass the test.")
