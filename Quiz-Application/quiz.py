@@ -47,7 +47,6 @@ class QuizController():
     def operate_quiz(self, q_given_answers):
         all_questions_index = 0
         quiz_question_index = 0
-        correct_q_count = 0
     
         while quiz_question_index < len(self.quiz_question_ids):
             if (self.quiz_question_ids[quiz_question_index] # requires ascending order
@@ -68,14 +67,10 @@ class QuizController():
             quiz_question_index += 1
             all_questions_index += 1
             q_given_answers.append(answer)
-            if answer == self.QSC.answers[all_questions_index]:
-                correct_q_count += 1
-        
-        self.show_results(quiz_question_index, correct_q_count)
 
-    def show_results(self, q_index, correct_q_count):
-        s = 's' if q_index != 1 else ''
-        print(f"\n{q_index} question{s} answered"
+    def show_result(self, answer_count, correct_q_count):
+        s = 's' if answer_count != 1 else ''
+        print(f"\n{answer_count} question{s} answered"
               f"\nCorrect answer count: {correct_q_count}")
         
     def get_quiz_query(self, question_indexes):
@@ -93,5 +88,3 @@ class QuizController():
     def get_quiz_questions_record(self, questions_query):
         questions = DatabaseConnector.get_records(questions_query)
         return questions    
-    
-    

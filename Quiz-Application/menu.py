@@ -70,6 +70,7 @@ class MenuController():
         correct_answer_count = self.result_class.get_correct_answer_count(
             self.get_quiz_questions(category_index), 
             q_given_answers)
+        self.quiz_class.show_result(len(q_given_answers), correct_answer_count)
         self.result_class.save_result(self.user_class.user_id, category,
                                     self.quiz_class.quiz_id, q_given_answers,
                                     correct_answer_count)

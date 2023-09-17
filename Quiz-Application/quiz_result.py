@@ -11,7 +11,7 @@ class QuizResultController():
         self.solved_quizes = []
 
     def save_result(self, user_id, category, quiz_id, user_answers, correct_answers):
-        # print("executed")
+        
         if not self.is_category_solved(user_id, category):
             result_query = f""" INSERT INTO quiz_results(user_id, quiz_id, quiz_category, 
             correct_answer_count, q_answer_1, q_answer_2, q_answer_3, q_answer_4, 
@@ -20,7 +20,6 @@ class QuizResultController():
             q_answer_17, q_answer_18, q_answer_19, q_answer_20)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
                 %s, %s, %s, %s, %s, %s, %s); """
-            # print("insert")
         elif correct_answers > self.previous_quiz_correct_answer:
             result_query = f""" UPDATE quiz_results SET user_id = %s, quiz_id = %s,
             quiz_category = %s, correct_answer_count = %s, q_answer_1 = %s,
@@ -30,7 +29,6 @@ class QuizResultController():
             q_answer_14 = %s, q_answer_15 = %s, q_answer_16 = %s, q_answer_17 = %s, 
             q_answer_18 = %s, q_answer_19 = %s, q_answer_20 = %s
             WHERE user_id = {user_id} AND quiz_category = '{category}'; """
-            # print("update")
         else:
             return
         
@@ -80,16 +78,20 @@ class QuizResultController():
 
         return correct_answer_counter
             
-    def is_category_solved(self, user_id, quiz_category):
+    def get_solved_quiz_result(self, user_id, quiz_category):
         result_category_query = f"""
-            SELECT correct_answer_count FROM quiz_results 
+            SELECT * FROM quiz_results 
             WHERE user_id = {user_id} AND
             quiz_category = '{quiz_category}' """
         
-        correct_answer_count = len(DatabaseConnector.get_records(
-            result_category_query))
-        self.previous_quiz_correct_answer = correct_answer_count
-        return True if correct_answer_count != 0 else False
+        solved_quiz_record = DatabaseConnector.get_records(
+            result_category_query)
+        return solved_quiz_record
+    
+    def is_category_solved(self, user_id, quiz_category):
+        solved_quiz_record = self.get_solved_quiz_result(user_id, quiz_category)
+        self.previous_quiz_correct_answer = int(solved_quiz_record[0][4])
+        return True if self.previous_quiz_correct_answer != 0 else False
 
     def set_solved_quiz_type(self, category_index):
         quiz_query = f""" SELECT * FROM quizes
