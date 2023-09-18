@@ -17,9 +17,12 @@ class UserController():
 
     def check_account_inquiry(self):
         while True:
-            print("Please enter username and password to login.")
+            print("Please enter username and password to login."
+                  "\nEnter 'q' to go back to the menu.")
             self.username = input("Username: ").lower()
+            if self.username in ('q', '0'): break
             self.password = input("Password: ")
+            if self.password in ('q', '0'): break
 
             if self.is_login_successful():
                 self.is_logged_in = True
@@ -42,7 +45,6 @@ class UserController():
     def is_login_successful(self):
         acc_index = 0
         for u in self.usernames:
-            # print(self.username == u, self.password == self.passwords[acc_index])
             if self.username == u and self.password == self.passwords[acc_index]:
                 self.user_id = self.user_ids[acc_index]        
                 return True
