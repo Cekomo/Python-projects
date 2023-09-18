@@ -30,9 +30,11 @@ class UserController():
         
     def are_infos_valid(self, username, password):
         if not 6 <= len(username) <= 11 and not username.isalpha():
+            print("Username can consist of 6 to 11 letters.")
             return False
         
         if len(password) != 6 and not username.isdigit():
+            print("Password can consist of 6 digits.")
             return False
         
         return True
@@ -52,17 +54,23 @@ class UserController():
     def register_account(self):
         print("\nPlease enter username and password to sign up.\n"
               "Username can only be consist of letters (6-11 characters) "
-              "and only numbers can be used for password (6 characters)")
-        username = input("Username: ").lower()
-        password = password = input("Password: ")
-        password_again = password = input("Password again: ")
+              "and only numbers can be used for password (6 characters)"
+              "\nEnter 'q' to quit register screen.")
+        while True:
+            username = input("Username: ").lower()
+            password = input("Password: ")
+            password_again = input("Password again: ")
 
-        if password != password_again:
-            print("Passwords do NOT match.")
-        elif self.are_infos_valid(username, password):
-            self.save_account(username, password)
-            print("Account is created!")
-            return
+            if any(var in ('q', '0') for var in 
+                   (username, password, password_again)):
+                break
+
+            if password != password_again:
+                print("Passwords do NOT match.")
+            elif self.are_infos_valid(username, password):
+                self.save_account(username, password)
+                print("Account is created!")
+                break
 
     def save_account(self, username, password):
         register_query = f"""
