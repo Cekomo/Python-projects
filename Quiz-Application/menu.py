@@ -64,6 +64,7 @@ class MenuController():
 
         category_index = util.get_valid_input(
             "Solve: ", len(self.quiz_class.quiz_categories))
+        # here, when 0 is input I got index error ----------------------------
         self.quiz_class.quiz_id = category_index
         category = self.quiz_class.quiz_categories[int(category_index)-1]
         self.quiz_class.prepare_quiz_questions(category_index)
