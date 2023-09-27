@@ -81,7 +81,8 @@ class MenuController():
     def show_solved_quizes(self):
         self.result_class.prepare_solved_quiz_list(self.user_class.user_id)
         self.result_class.show_solved_quiz_list()
-        result_index = util.get_valid_input("Select an index: ")
+        result_index = util.get_valid_input(
+            "Select an index: ", self.result_class.solved_quiz_count + 1)
         self.result_class.prepare_solved_quiz_parameters(int(result_index)-1)
         self.result_class.show_solved_quiz_evaluation(
             self.get_quiz_questions(result_index), 

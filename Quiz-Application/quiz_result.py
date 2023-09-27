@@ -4,11 +4,13 @@ class QuizResultController():
     def __init__(self):
         self.solved_quiz_type = ""
         self.previous_quiz_correct_answer = 0
+        self.solved_quiz_count = 0
         self.quiz_result_record = []
         self.solved_quiz_types = []
         self.quiz_ids = []
         self.quiz_categories = []
         self.solved_quizes = []
+        
 
     def save_result(self, user_id, category, quiz_id, user_answers, correct_answers):
         
@@ -47,10 +49,12 @@ class QuizResultController():
         self.quiz_categories = [row[3] for row in self.solved_quizes]
 
     def show_solved_quiz_list(self):
-        i = 1
+        i = 0
         for category in self.quiz_categories:
-            print(f"{i} - {category}")
             i += 1
+            print(f"{i} - {category}")
+            
+        self.solved_quiz_count = i
 
     def prepare_solved_quiz_parameters(self, result_index):
         self.quiz_result_record = self.solved_quizes[result_index]
