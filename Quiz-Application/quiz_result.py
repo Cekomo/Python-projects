@@ -50,10 +50,12 @@ class QuizResultController():
 
     def show_solved_quiz_list(self):
         i = 0
+        self.solved_quiz_types = []
         for category in self.quiz_categories:
             i += 1
             print(f"{i} - {category}")
-            
+            self.solved_quiz_types.append(category)
+
         self.solved_quiz_count = i
 
     def prepare_solved_quiz_parameters(self, result_index):
@@ -62,7 +64,7 @@ class QuizResultController():
     
     def show_solved_quiz_evaluation(self, questions, quiz_result):
         correct_answer_count = 0
-        i = 4
+        i = 5
         for q in questions:
             if quiz_result[i] == None:
                 break

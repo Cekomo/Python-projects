@@ -64,7 +64,6 @@ class MenuController():
 
         category_index = util.get_valid_input(
             "Solve: ", len(self.quiz_class.quiz_categories))
-        # here, when 0 is input I got index error ----------------------------
         self.quiz_class.quiz_id = category_index
         category = self.quiz_class.quiz_categories[int(category_index)-1]
         self.quiz_class.prepare_quiz_questions(category_index)
@@ -84,13 +83,14 @@ class MenuController():
         result_index = util.get_valid_input(
             "Select an index: ", self.result_class.solved_quiz_count + 1)
         self.result_class.prepare_solved_quiz_parameters(int(result_index)-1)
+        solved_quiz_type = self.result_class.solved_quiz_types[int(result_index)-1]
         self.result_class.show_solved_quiz_evaluation(
-            self.get_quiz_questions(result_index), 
+            self.get_quiz_questions(solved_quiz_type), 
             self.result_class.quiz_result_record) 
 
         
-    def get_quiz_questions(self, category_index):
-        question_indexes = QSC.get_question_indexes(category_index)
+    def get_quiz_questions(self, category):
+        question_indexes = QSC.get_question_indexes(category)
         questions_query = self.quiz_class.get_quiz_query(question_indexes)
         questions = self.quiz_class.get_quiz_questions_record(questions_query)
         return questions

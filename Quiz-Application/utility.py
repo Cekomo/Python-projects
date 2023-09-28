@@ -13,13 +13,3 @@ class UtilityClass():
 
             print()
             return category_index
-
-
-            # if max_value == 1000 and category_index == 0:
-            #     print()
-            #     return 0
-            # if (category_index.isdigit() and int(category_index) < max_value
-            #     and int(category_index) > 0):
-            #     print()
-            #     return category_index
-            # print("Please enter a number corresponding a section.\n")
