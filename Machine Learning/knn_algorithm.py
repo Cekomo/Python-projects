@@ -29,12 +29,23 @@ class KNearestAlgorithm():
             weight_distance = abs(sample['Weight'] - selected_sample['Weight'])
             height_distance = abs(sample['Height'] - selected_sample['Height'])
             euclidean_distance = np.sqrt(weight_distance**2 + height_distance**2)
-            distance_dict[index] = euclidean_distance.item()
+            if index != selected_sample.index[0]:
+                distance_dict[index] = euclidean_distance.item()
 
         return distance_dict
+    
+
+    def define_knn_samples(self, distance_dict, sample_size):
+        if sample_size >= len(distance_dict):
+            print("Sample size is greater than dataset, all dataset is added.")
+        distance_dict_sorted = dict(sorted(distance_dict.items(), 
+            key=lambda item:item[1])[:sample_size])
+        
+        print(distance_dict_sorted)
 
 
 k_nearest_alorigthm = KNearestAlgorithm()
 selected_sample = k_nearest_alorigthm.df.sample(n=1)
 k_nearest_alorigthm.plot_height_weight()
-print(k_nearest_alorigthm.calculate_euclidean_distance(selected_sample))
+distance_dict = k_nearest_alorigthm.calculate_euclidean_distance(selected_sample)
+k_nearest_alorigthm.define_knn_samples(distance_dict, 5)
