@@ -30,7 +30,7 @@ class KNearestAlgorithm():
             height_distance = abs(sample['Height'] - selected_sample['Height'])
             euclidean_distance = np.sqrt(weight_distance**2 + height_distance**2)
             if index != selected_sample.index[0]:
-                distance_dict[index] = euclidean_distance.item()
+                distance_dict[index] = [euclidean_distance.item(), sample['Category']]
 
         return distance_dict
     
@@ -38,14 +38,25 @@ class KNearestAlgorithm():
     def define_knn_samples(self, distance_dict, sample_size):
         if sample_size >= len(distance_dict):
             print("Sample size is greater than dataset, all dataset is added.")
-        distance_dict_sorted = dict(sorted(distance_dict.items(), 
+        distance_dict_processed = dict(sorted(distance_dict.items(), 
             key=lambda item:item[1])[:sample_size])
         
-        print(distance_dict_sorted)
+        return distance_dict_processed
 
+
+    def determine_sample_type(self, selected_sample, distance_dict_processed):
+        category_occurence_dict = {}
+        for key, value in distance_dict_processed.items():
+            if value[1] not in category_occurence_dict:
+                category_occurence_dict[value[1]] = 1
+            else:
+                category_occurence_dict[value[1]] += 1
+        print(f"Output for index {selected_sample.index.values[0]}:" 
+              f" {max(category_occurence_dict.keys())}")
 
 k_nearest_alorigthm = KNearestAlgorithm()
 selected_sample = k_nearest_alorigthm.df.sample(n=1)
 k_nearest_alorigthm.plot_height_weight()
 distance_dict = k_nearest_alorigthm.calculate_euclidean_distance(selected_sample)
-k_nearest_alorigthm.define_knn_samples(distance_dict, 5)
+distance_dict_processed = k_nearest_alorigthm.define_knn_samples(distance_dict, 5)
+k_nearest_alorigthm.determine_sample_type(selected_sample, distance_dict_processed)
