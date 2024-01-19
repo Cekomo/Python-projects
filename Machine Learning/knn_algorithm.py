@@ -12,9 +12,11 @@ class KNearestAlgorithm():
         y_axis = self.df['Height']
         z_axis = self.df['Gender']
 
-        for x, y, gender in zip(x_axis, y_axis, z_axis):
+        for index, (x, y, gender) in enumerate(zip(x_axis, y_axis, z_axis)):
             plt.scatter(x, y, color=self.gender_color[gender], 
                         label=gender, marker='.')
+            plt.text(x, y, str(index), fontsize=8, ha='right')
+
 
         plt.xlabel('Weight')
         plt.ylabel('Height')
@@ -44,19 +46,34 @@ class KNearestAlgorithm():
         return distance_dict_processed
 
 
-    def determine_sample_type(self, selected_sample, distance_dict_processed):
+    def determine_sample_type(self, selected_sample_ind, distance_dict_processed):
         category_occurence_dict = {}
         for key, value in distance_dict_processed.items():
             if value[1] not in category_occurence_dict:
                 category_occurence_dict[value[1]] = 1
             else:
                 category_occurence_dict[value[1]] += 1
-        print(f"Output for index {selected_sample.index.values[0]}:" 
+        print(f"Output for index {selected_sample_ind}:" 
               f" {max(category_occurence_dict.keys())}")
+        return category_occurence_dict
+        
+    def optimise_output_accuracy(self):
+        pass
+    
+    def control_prediction_output(self, selected_sample, category_occurence_dict):
+        the_sample_category = selected_sample['Category'].values[0]
+        if max(category_occurence_dict.keys()) == the_sample_category:
+            print("Prediction is correct!")
+        else:
+            print(f"Prediction is incorrect, the label was {the_sample_category}")
 
-k_nearest_alorigthm = KNearestAlgorithm()
-selected_sample = k_nearest_alorigthm.df.sample(n=1)
-k_nearest_alorigthm.plot_height_weight()
-distance_dict = k_nearest_alorigthm.calculate_euclidean_distance(selected_sample)
-distance_dict_processed = k_nearest_alorigthm.define_knn_samples(distance_dict, 5)
-k_nearest_alorigthm.determine_sample_type(selected_sample, distance_dict_processed)
+
+for i in range(0, 10):
+    k_nearest_alorigthm = KNearestAlgorithm()
+    selected_sample = k_nearest_alorigthm.df.sample(n=1)
+    k_nearest_alorigthm.plot_height_weight()
+    distance_dict = k_nearest_alorigthm.calculate_euclidean_distance(selected_sample)
+    distance_dict_processed = k_nearest_alorigthm.define_knn_samples(distance_dict, 5)
+    selected_sample_ind = selected_sample.index.values[0]
+    category_occ_dict = k_nearest_alorigthm.determine_sample_type(selected_sample_ind, distance_dict_processed)
+    k_nearest_alorigthm.control_prediction_output(selected_sample, category_occ_dict)
