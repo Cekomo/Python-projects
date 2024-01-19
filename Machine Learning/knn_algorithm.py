@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import time
 
 class KNearestAlgorithm():
     def __init__(self):
@@ -53,8 +54,8 @@ class KNearestAlgorithm():
                 category_occurence_dict[value[1]] = 1
             else:
                 category_occurence_dict[value[1]] += 1
-        print(f"Output for index {selected_sample_ind}:" 
-              f" {max(category_occurence_dict.keys())}")
+        # print(f"Output for index {selected_sample_ind}:" 
+        #       f" {max(category_occurence_dict.keys())}")
         return category_occurence_dict
         
     def optimise_output_accuracy(self):
@@ -63,17 +64,24 @@ class KNearestAlgorithm():
     def control_prediction_output(self, selected_sample, category_occurence_dict):
         the_sample_category = selected_sample['Category'].values[0]
         if max(category_occurence_dict.keys()) == the_sample_category:
-            print("Prediction is correct!")
+            # print("Prediction is correct!")
+            return correct_count + 1
         else:
-            print(f"Prediction is incorrect, the label was {the_sample_category}")
+            # print(f"Prediction is incorrect, the label was {the_sample_category}")
+            return correct_count
 
-
-for i in range(0, 10):
-    k_nearest_alorigthm = KNearestAlgorithm()
-    selected_sample = k_nearest_alorigthm.df.sample(n=1)
-    k_nearest_alorigthm.plot_height_weight()
-    distance_dict = k_nearest_alorigthm.calculate_euclidean_distance(selected_sample)
-    distance_dict_processed = k_nearest_alorigthm.define_knn_samples(distance_dict, 5)
+start_time = time.time()
+correct_count = 0
+total_iteration = 100
+k_nearest_algorithm = KNearestAlgorithm()
+for i in range(0, total_iteration):
+    selected_sample = k_nearest_algorithm.df.sample(n=1)
+    k_nearest_algorithm.plot_height_weight()
+    distance_dict = k_nearest_algorithm.calculate_euclidean_distance(selected_sample)
+    distance_dict_processed = k_nearest_algorithm.define_knn_samples(distance_dict, 5)
     selected_sample_ind = selected_sample.index.values[0]
-    category_occ_dict = k_nearest_alorigthm.determine_sample_type(selected_sample_ind, distance_dict_processed)
-    k_nearest_alorigthm.control_prediction_output(selected_sample, category_occ_dict)
+    category_occ_dict = k_nearest_algorithm.determine_sample_type(selected_sample_ind, distance_dict_processed)
+    correct_count = k_nearest_algorithm.control_prediction_output(selected_sample, category_occ_dict)
+
+print(f"Success ratio: {round(correct_count/total_iteration*100, 1)}%")
+print(f"Time taken: {time.time() - start_time}")
