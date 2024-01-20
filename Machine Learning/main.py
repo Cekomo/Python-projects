@@ -16,7 +16,7 @@ def predict_sample_knn(k_number, total_iteration):
             selected_sample_ind, distance_dict_processed)
         correct_count = k_nearest_algorithm.control_prediction_output(
             selected_sample, category_occ_dict, correct_count)
-        # k_nearest_algorithm.plot_height_weight()
+        k_nearest_algorithm.plot_height_weight()
 
     print(f"Success ratio: {round(correct_count/total_iteration*100, 1)}%")
 

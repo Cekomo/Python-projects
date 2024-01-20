@@ -9,9 +9,11 @@ class UtilityClass():
 
     
     @staticmethod
-    def get_end_points(end_points, new_value):
-        if new_value > end_points[1]:
-            end_points[1] = new_value
-        if new_value < end_points[0]:
-            end_points[0] = new_value
+    def get_end_points(data_frame, field):
+        end_points = [1000, 0]
+        for index, sample in data_frame.iterrows():
+            if sample[field] > end_points[1]:
+                end_points[1] = sample[field]
+            if sample[field] < end_points[0]:
+                end_points[0] = sample[field]
         return end_points

@@ -32,20 +32,20 @@ class KNearestAlgorithm():
     def calculate_euclidean_distance(self, selected_sample):
         selected_sample = self.df.sample(n=1)
         distance_dict = {}
-        x_end_points, y_end_points = [1000, 0], [1000, 0]
+        x_end_points = util.get_end_points(self.df, 'Weight')
+        y_end_points = util.get_end_points(self.df, 'Height')
+        x_axis_range = x_end_points[1] - x_end_points[0]
+        y_axis_range = y_end_points[1] - y_end_points[0]
         for index, sample in self.df.iterrows():
+            if selected_sample.index == index:
+                continue
             weight_distance = abs(sample['Weight'] - selected_sample['Weight'])
             height_distance = abs(sample['Height'] - selected_sample['Height'])
-            x_end_points = util.get_end_points(x_end_points, sample['Weight'])
-            y_end_points = util.get_end_points(y_end_points, sample['Height'])
-            x_axis_range = x_end_points[1] - x_end_points[0]
-            y_axis_range = y_end_points[1] - y_end_points[0]
             euclidean_distance = np.sqrt(
-                (weight_distance.values[0]/x_axis_range * 100)**2 +
+                (weight_distance.values[0]/x_axis_range * 100)**2 + 
                 (height_distance.values[0]/y_axis_range * 100)**2)
-            print((weight_distance.values[0]/x_axis_range * 100), (height_distance.values[0]/y_axis_range * 100)**2)
-            if index != selected_sample.index[0]:
-                distance_dict[index] = [euclidean_distance.item(), sample['Category']]
+            distance_dict[index] = [euclidean_distance.item(), sample['Category']]
+            
         return distance_dict
     
 
