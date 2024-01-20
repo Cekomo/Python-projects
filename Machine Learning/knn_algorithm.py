@@ -1,12 +1,15 @@
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import time
 
 class KNearestAlgorithm():
     def __init__(self):
-        self.df = pd.read_csv('bmi_dataset.csv')
+        file_name = 'bmi_dataset.csv'
+        file_path = os.path.join(os.path.dirname(__file__), file_name)
+        self.df = pd.read_csv(file_path)
         self.gender_color = {'Male': 'blue', 'Female': 'pink'}
+
 
     def plot_height_weight(self):
         x_axis = self.df['Weight']
@@ -18,11 +21,10 @@ class KNearestAlgorithm():
                         label=gender, marker='.')
             plt.text(x, y, str(index), fontsize=8, ha='right')
 
-
         plt.xlabel('Weight')
         plt.ylabel('Height')
         plt.title('Individuals\' Physical Appearence')
-        # plt.show()
+        plt.show()
 
     
     def calculate_euclidean_distance(self, selected_sample):
@@ -58,11 +60,13 @@ class KNearestAlgorithm():
         #       f" {max(category_occurence_dict.keys())}")
         return category_occurence_dict
         
+
     def optimise_output_accuracy(self):
         pass
     
-    def control_prediction_output(self, selected_sample, category_occurence_dict):
-        the_sample_category = selected_sample['Category'].values[0]
+
+    def control_prediction_output(self, the_sample, category_occurence_dict, correct_count):
+        the_sample_category = the_sample['Category'].values[0]
         if max(category_occurence_dict.keys()) == the_sample_category:
             # print("Prediction is correct!")
             return correct_count + 1
@@ -70,18 +74,3 @@ class KNearestAlgorithm():
             # print(f"Prediction is incorrect, the label was {the_sample_category}")
             return correct_count
 
-start_time = time.time()
-correct_count = 0
-total_iteration = 100
-k_nearest_algorithm = KNearestAlgorithm()
-for i in range(0, total_iteration):
-    selected_sample = k_nearest_algorithm.df.sample(n=1)
-    k_nearest_algorithm.plot_height_weight()
-    distance_dict = k_nearest_algorithm.calculate_euclidean_distance(selected_sample)
-    distance_dict_processed = k_nearest_algorithm.define_knn_samples(distance_dict, 5)
-    selected_sample_ind = selected_sample.index.values[0]
-    category_occ_dict = k_nearest_algorithm.determine_sample_type(selected_sample_ind, distance_dict_processed)
-    correct_count = k_nearest_algorithm.control_prediction_output(selected_sample, category_occ_dict)
-
-print(f"Success ratio: {round(correct_count/total_iteration*100, 1)}%")
-print(f"Time taken: {time.time() - start_time}")
