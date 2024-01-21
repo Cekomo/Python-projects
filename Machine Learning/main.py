@@ -1,29 +1,34 @@
 import time
+import os
 from knn_algorithm import KNearestAlgorithm
+from util import UtilityClass as util
 
 def predict_sample_knn(k_number, total_iteration):
     correct_count = 0
-    k_nearest_algorithm = KNearestAlgorithm()
+    whole_file_path = os.path.join(
+            os.path.dirname(__file__), 'whole_bmi_dataset.csv')
+    whole_df = util.read_csv(whole_file_path)
+    
     for i in range(0, total_iteration):
-        selected_sample = k_nearest_algorithm.whole_df.sample(n=1)
-        distance_dict = k_nearest_algorithm.calculate_euclidean_distance(
-            selected_sample)
+        train_df = util.gather_random_dataset(whole_df, 60)
+        test_sample = util.get_test_sample(whole_df, train_df)
+        k_nearest_algorithm = KNearestAlgorithm(train_df, test_sample)
+        distance_dict = k_nearest_algorithm.calculate_euclidean_distance()
         distance_dict_processed = k_nearest_algorithm.define_knn_samples(
             distance_dict, k_number)
-        selected_sample_ind = selected_sample.index.values[0]
         category_occ_dict = k_nearest_algorithm.determine_sample_type(
-            selected_sample_ind, distance_dict_processed)
+            distance_dict_processed)
         correct_count = k_nearest_algorithm.control_prediction_output(
-            selected_sample, category_occ_dict, correct_count)
+            category_occ_dict, correct_count)
     
     print(f"Success ratio: {round(correct_count/total_iteration*100, 1)}%")
-    k_nearest_algorithm.plot_height_weight()
+    k_nearest_algorithm.plot_train_df()
 
 
 start_time = time.time()
 
 k_number = 4
-iteration_count = 1000
+iteration_count = 500
 predict_sample_knn(k_number, iteration_count)
 
 end_time = time.time()

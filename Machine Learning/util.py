@@ -26,9 +26,10 @@ class UtilityClass():
     
     
     @staticmethod
-    def gather_random_dataset(whole_df, train_df, sample_amount):
+    def gather_random_dataset(whole_df, train_sample_count):
         selected_indices = set()
-        for _ in range(0, sample_amount):
+        train_df = pd.DataFrame()
+        for _ in range(0, train_sample_count):
             break_point = 0
             # it is a problem if training dataset entity reaches..
             #.. the number of whole dataset
@@ -37,6 +38,19 @@ class UtilityClass():
                 index = whole_df.sample().index[0]
                 if index not in selected_indices:
                     selected_indices.add(index)
-                    train_df.loc[index]
+                    train_df = train_df._append(whole_df.loc[index])
                     break
         return train_df
+
+
+    @staticmethod
+    def get_test_sample(whole_df, train_df):
+        break_point = 0
+        while True and break_point < 1000:
+            selected_index = whole_df.sample().index[0]
+            if selected_index not in train_df.index:
+                return whole_df.loc[selected_index]
+            break_point += 1
+            
+        raise ValueError("Unable to find a test sample", 
+                         " not present in the training dataset.")
