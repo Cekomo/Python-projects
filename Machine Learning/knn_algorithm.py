@@ -1,18 +1,15 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from util import UtilityClass as util
 
 class KNearestAlgorithm():
     def __init__(self, train_df, test_sample):
         self.train_df = train_df
         self.test_sample = test_sample
-        self.bmi_color = {'Normal': 'blue', 'Overweight': 'orange',
-                          'Underweight': 'black', 'Obese': 'red'}
 
     
     def calculate_euclidean_distance(self):
-        distance_dict = {}
+        euc_distance_dict = {}
         x_end_points = util.get_end_points(self.train_df, 'Weight')
         y_end_points = util.get_end_points(self.train_df, 'Height')
         x_axis_range = x_end_points[1] - x_end_points[0]
@@ -25,9 +22,9 @@ class KNearestAlgorithm():
             euclidean_distance = np.sqrt(
                 (weight_distance/x_axis_range * 100)**2 + 
                 (height_distance/y_axis_range * 100)**2)
-            distance_dict[index] = [euclidean_distance.item(), sample['Category']]
+            euc_distance_dict[index] = [euclidean_distance.item(), sample['Category']]
 
-        return distance_dict
+        return euc_distance_dict
     
 
     def define_knn_samples(self, distance_dict, sample_size):
@@ -35,6 +32,7 @@ class KNearestAlgorithm():
             print("Sample size is greater than dataset, all dataset is added.")
         distance_dict_processed = dict(sorted(distance_dict.items(), 
             key=lambda item:item[1])[:sample_size])
+        
         return distance_dict_processed
 
 
@@ -45,6 +43,7 @@ class KNearestAlgorithm():
                 category_occurrence_dict[value[1]] = 1
             else:
                 category_occurrence_dict[value[1]] += 1
+
         return category_occurrence_dict
     
 
@@ -57,21 +56,4 @@ class KNearestAlgorithm():
         else:
             # print(f"Prediction is incorrect, the label was {test_sample_category}")
             return correct_count
-        
-
-    def plot_train_df(self):
-        x_axis = self.train_df['Weight']
-        y_axis = self.train_df['Height']
-        z_axis = self.train_df['Category']
-
-        for index, (x, y, bmi) in enumerate(zip(x_axis, y_axis, z_axis)):
-            plt.scatter(x, y, color=self.bmi_color[bmi], 
-                        label=bmi, marker='.')
-            plt.text(x, y, str(index), fontsize=8, ha='right')
-
-        plt.xlabel('Weight')
-        plt.ylabel('Height')
-        plt.title('Individuals\' Physical Appearence')
-        # plt.legend(self.bmi_color.values(), labels=self.bmi_color.keys())
-        plt.show()
 
