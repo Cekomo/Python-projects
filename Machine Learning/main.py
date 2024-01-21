@@ -22,7 +22,7 @@ def predict_sample_knn(k_number, total_iteration):
 
 start_time = time.time()
 
-k_number = 3
+k_number = 4
 iteration_count = 1000
 predict_sample_knn(k_number, iteration_count)
 

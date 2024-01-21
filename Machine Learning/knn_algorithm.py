@@ -29,6 +29,7 @@ class KNearestAlgorithm():
         plt.xlabel('Weight')
         plt.ylabel('Height')
         plt.title('Individuals\' Physical Appearence')
+        plt.legend(self.bmi_color.values(), labels=self.bmi_color.keys())
         plt.show()
 
     
