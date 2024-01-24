@@ -1,6 +1,7 @@
 import time
 import os
 from knn_algorithm import KNearestAlgorithm
+from linear_regression import LinearRegression
 from util import UtilityClass as util
 from visualizer import Visualizer as visual
 
@@ -32,9 +33,14 @@ def predict_sample_knn(k_number, total_iteration):
 
 start_time = time.time()
 
-k_number = 4
-iteration_count = 1
-predict_sample_knn(k_number, iteration_count)
+# KNN -----
+# k_number = 4
+# iteration_count = 1
+# predict_sample_knn(k_number, iteration_count)
+# KNN -----
+dependent_samples = [1.4, 2.3, 7.4, 5.3, 8.2, 5.8, 4.9, 6.6]
+linear_regression = LinearRegression()
+print(linear_regression.calculate_axis_median(dependent_samples))
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")
