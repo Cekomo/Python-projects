@@ -59,3 +59,9 @@ class UtilityClass():
     @staticmethod
     def get_df_record(df, row_title, row_title_value):
         return df[df[row_title] == row_title_value].iloc[:, 1:]
+    
+    @staticmethod
+    def form_dict_from_df(train_df):
+        years = train_df.columns.astype(int)
+        values = train_df.values.flatten()
+        return {key: value for key, value in zip(years, values)}

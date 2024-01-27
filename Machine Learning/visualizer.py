@@ -38,11 +38,8 @@ class Visualizer():
 
     
     @staticmethod
-    def plot_linear_regression(train_df, country_name):
-        years = train_df.columns.astype(int)
-        values = train_df.values.flatten()
-
-        plt.scatter(years, values, marker='.')
+    def plot_linear_regression(train_dict, country_name):
+        plt.scatter(train_dict.keys(), train_dict.values(), marker='.')
         plt.title(f'{country_name} - GDP Over the Years')
         plt.xlabel('Year')
         plt.ylabel('GDP Value')
