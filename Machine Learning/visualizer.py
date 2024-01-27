@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 class Visualizer():
     def __init__(self) -> None:
@@ -43,5 +44,11 @@ class Visualizer():
         plt.title(f'{country_name} - GDP Over the Years')
         plt.xlabel('Year')
         plt.ylabel('GDP Value')
-        plt.show()
+        # plt.show()
 
+    
+    @staticmethod
+    def plot_regression_line(x_values, slope, constant):
+        x_values = np.array(x_values)
+        plt.plot(x_values, constant + slope * x_values)
+        plt.show()

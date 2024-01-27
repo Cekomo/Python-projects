@@ -50,6 +50,8 @@ y_mean = lr.get_median(country_gdp_dict.values())
 slope = lr.calc_linear_regression_slope(country_gdp_dict, x_mean, y_mean)
 constant = lr.calc_linear_regression_constant(x_mean, y_mean, slope)
 lr.fit_data_to_regression_line(2023, slope, constant)
+year_list = list(country_gdp_dict.keys())
+visual.plot_regression_line(year_list, slope, constant)
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")
