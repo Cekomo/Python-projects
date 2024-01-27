@@ -39,12 +39,17 @@ start_time = time.time()
 # predict_sample_knn(k_number, iteration_count)
 # KNN -----
 
-linear_regression = LinearRegression()
+lr = LinearRegression()
 gdp_df = util.read_csv('country_citizens_gdp.csv')
-country_gdp_df = util.get_df_record(gdp_df, 'Country Name', 'Turkiye')
+country_gdp_df = util.get_df_record(gdp_df, 'Country Name', 'Singapore')
 country_gdp_dict = util.form_dict_from_df(country_gdp_df)
-visual.plot_linear_regression(country_gdp_dict, 'Turkiye')
-# linear_regression.calculate_axis_median(country_gdp_df)
+visual.plot_linear_regression(country_gdp_dict, 'Singapore')
+
+x_mean = lr.get_median(country_gdp_dict.keys())
+y_mean = lr.get_median(country_gdp_dict.values())
+slope = lr.calc_linear_regression_slope(country_gdp_dict, x_mean, y_mean)
+constant = lr.calc_linear_regression_constant(x_mean, y_mean, slope)
+lr.fit_data_to_regression_line(2023, slope, constant)
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")
