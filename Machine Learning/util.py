@@ -54,3 +54,8 @@ class UtilityClass():
             
         raise ValueError("Unable to find a test sample", 
                          " not present in the training dataset.")
+    
+
+    @staticmethod
+    def get_df_record(df, row_title, row_title_value):
+        return df[df[row_title] == row_title_value].iloc[:, 1:]

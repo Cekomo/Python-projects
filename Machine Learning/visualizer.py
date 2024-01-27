@@ -7,8 +7,7 @@ class Visualizer():
     
     @staticmethod
     def plot_train_df_knn(train_df, test_sample, bmi_color, used_samples):
-        # it is better to elinate label dependency
-        
+        # it is better to eliminate label dependency
         x_axis = train_df['Weight']
         y_axis = train_df['Height']
         z_axis = train_df['Category']
@@ -35,5 +34,17 @@ class Visualizer():
         plt.figtext(0.01, 0.96, marker_note, ha='left', va='center', fontsize=9)
 
         # plt.legend(self.bmi_color.values(), labels=self.bmi_color.keys())
+        plt.show()
+
+    
+    @staticmethod
+    def plot_linear_regression(train_df, country_name):
+        years = train_df.columns.astype(int)
+        values = train_df.values.flatten()
+
+        plt.scatter(years, values, marker='.')
+        plt.title(f'{country_name} - GDP Over the Years')
+        plt.xlabel('Year')
+        plt.ylabel('GDP Value')
         plt.show()
 

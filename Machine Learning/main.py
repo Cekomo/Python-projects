@@ -38,9 +38,14 @@ start_time = time.time()
 # iteration_count = 1
 # predict_sample_knn(k_number, iteration_count)
 # KNN -----
-dependent_samples = [1.4, 2.3, 7.4, 5.3, 8.2, 5.8, 4.9, 6.6]
-linear_regression = LinearRegression()
-print(linear_regression.calculate_axis_median(dependent_samples))
+gdp_df = util.read_csv('country_citizens_gdp.csv')
+country_gdp_df = util.get_df_record(gdp_df, 'Country Name', 'Turkiye')
+visual.plot_linear_regression(country_gdp_df, 'Turkiye')
+# country_gdp_df = gdp_df[gdp_df['Country Name'] == 'Singapore']
+# print(util.extract_entity_over_years_df(country_gdp_df, 208))
+# linear_regression = LinearRegression()
+
+# print(linear_regression.calculate_axis_median())
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")
