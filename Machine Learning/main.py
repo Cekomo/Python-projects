@@ -31,6 +31,24 @@ def predict_sample_knn(k_number, total_iteration):
     visual.plot_train_df_knn(train_df, test_sample, bmi_color, used_samples_dict)
 
 
+def predict_sample_lr(file_path, record_name, record_value, predicted_year):
+    lr = LinearRegression()
+    gdp_df = util.read_csv(file_path)
+    country_gdp_df = util.get_df_record(gdp_df, record_name, record_value)
+    country_gdp_dict = util.form_dict_from_df(country_gdp_df)
+    visual.plot_linear_regression(country_gdp_dict, record_value)
+
+    x_mean = lr.get_median(country_gdp_dict.keys())
+    y_mean = lr.get_median(country_gdp_dict.values())
+    slope = lr.calc_linear_regression_slope(country_gdp_dict, x_mean, y_mean)
+    constant = lr.calc_linear_regression_constant(x_mean, y_mean, slope)
+    lr.print_lr_equation(slope, constant)
+    lr.fit_data_to_regression_line(predicted_year, slope, constant)
+
+    year_list = list(country_gdp_dict.keys())
+    visual.plot_regression_line(year_list, slope, constant)
+
+
 start_time = time.time()
 
 # KNN -----
@@ -39,19 +57,8 @@ start_time = time.time()
 # predict_sample_knn(k_number, iteration_count)
 # KNN -----
 
-lr = LinearRegression()
-gdp_df = util.read_csv('country_citizens_gdp.csv')
-country_gdp_df = util.get_df_record(gdp_df, 'Country Name', 'Singapore')
-country_gdp_dict = util.form_dict_from_df(country_gdp_df)
-visual.plot_linear_regression(country_gdp_dict, 'Singapore')
-
-x_mean = lr.get_median(country_gdp_dict.keys())
-y_mean = lr.get_median(country_gdp_dict.values())
-slope = lr.calc_linear_regression_slope(country_gdp_dict, x_mean, y_mean)
-constant = lr.calc_linear_regression_constant(x_mean, y_mean, slope)
-lr.fit_data_to_regression_line(2023, slope, constant)
-year_list = list(country_gdp_dict.keys())
-visual.plot_regression_line(year_list, slope, constant)
+file_path = 'country_citizens_gdp.csv'
+predict_sample_lr(file_path, 'Country Name', 'Cameroon', 2030)
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")

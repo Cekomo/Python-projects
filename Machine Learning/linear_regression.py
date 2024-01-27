@@ -26,5 +26,8 @@ class LinearRegression():
     
 
     def fit_data_to_regression_line(self, x, slope, constant):
-        print(constant + slope * x)
+        print(f" Predicted output for {x} is: {constant + slope * x}")
 
+
+    def print_lr_equation(self, slope, constant):
+        print(f"Y = {constant} + {slope} * x")
