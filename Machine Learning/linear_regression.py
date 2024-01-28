@@ -33,3 +33,11 @@ class LinearRegression():
 
     def print_lr_equation(self, slope, constant):
         print(f"Y = {round(constant, 2)} + {round(slope, 2)} * x")
+
+
+    def calc_mean_squared_error(self, x_values, y_values, slope, constant):
+        mse_sum = np.nansum([(y - (constant + slope * x))**2 
+                                      for x, y in zip(x_values, y_values)])
+        sample_count = len([y for y in y_values if not np.isnan(y)])
+        mse = mse_sum / sample_count
+        print(f"Mean squared error for regression is: {round(mse, 2)}")

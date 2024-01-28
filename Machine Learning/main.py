@@ -40,14 +40,17 @@ def predict_sample_lr(file_path, record_name, record_value, predicted_year):
     country_gdp_dict = util.form_dict_from_df(country_gdp_df)
     visual.plot_linear_regression(country_gdp_dict, record_value)
 
-    x_mean = lr.get_mean(country_gdp_dict.keys())
-    y_mean = lr.get_mean(country_gdp_dict.values())
+    x_values = country_gdp_dict.keys()
+    y_values = country_gdp_dict.values()
+    x_mean = lr.get_mean(x_values)
+    y_mean = lr.get_mean(y_values)
     slope = lr.calc_linear_regression_slope(country_gdp_dict, x_mean, y_mean)
     constant = lr.calc_linear_regression_constant(x_mean, y_mean, slope)
     lr.print_lr_equation(slope, constant)
     lr.fit_data_to_regression_line(predicted_year, slope, constant)
 
     year_list = list(country_gdp_dict.keys())
+    lr.calc_mean_squared_error(x_values, y_values, slope, constant)
     visual.plot_regression_line(year_list, slope, constant)
 
 
@@ -61,7 +64,8 @@ start_time = time.time()
 
 file_path = 'country_citizens_gdp.csv'
 
-predict_sample_lr(file_path, 'Country Name', 'Israel', 2030)
+predict_sample_lr(file_path, 'Country Name', 'Monaco', 2030)
+
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")
