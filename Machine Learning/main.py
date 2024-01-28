@@ -61,7 +61,7 @@ start_time = time.time()
 
 file_path = 'country_citizens_gdp.csv'
 
-predict_sample_lr(file_path, 'Country Name', 'Aruba', 2030)
+predict_sample_lr(file_path, 'Country Name', 'Israel', 2030)
 
 end_time = time.time()
 print(f"Time taken: {end_time - start_time}")

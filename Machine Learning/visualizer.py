@@ -50,5 +50,5 @@ class Visualizer():
     @staticmethod
     def plot_regression_line(x_values, slope, constant):
         x_values = np.array(x_values)
-        plt.plot(x_values, constant + slope * x_values)
+        plt.plot(x_values, constant + slope * x_values, color='green')
         plt.show()

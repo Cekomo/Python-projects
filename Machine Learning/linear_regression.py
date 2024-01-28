@@ -7,7 +7,7 @@ class LinearRegression():
 
 
     def get_mean(self, axis_coordinates):
-        total_sum = sum(axis_coordinates)
+        total_sum = np.nansum(list(axis_coordinates))
         return total_sum / len(axis_coordinates)
     
 
@@ -17,8 +17,10 @@ class LinearRegression():
 
     def calc_linear_regression_slope(self, dict, x_mean, y_mean):
         numerator = sum((x - x_mean) * (y - y_mean) for x, y in 
-                        zip(dict.keys(), dict.values()))
-        denominator = sum((x - x_mean)**2 for x in dict.keys())
+                        zip(dict.keys(), dict.values())
+                        if not np.isnan((x - x_mean) * (y - y_mean)))
+        denominator = sum((x - x_mean)**2 for x in dict.keys()
+                          if not np.isnan((x - x_mean)**2))
         return numerator / denominator
 
     def calc_linear_regression_constant(self, x_mean, y_mean, slope):
@@ -26,8 +28,8 @@ class LinearRegression():
     
 
     def fit_data_to_regression_line(self, x, slope, constant):
-        print(f"Predicted output for {x} is: {constant + slope * x}")
+        print(f"Predicted output for {x} is: {round(constant + slope * x, 2)}")
 
 
     def print_lr_equation(self, slope, constant):
-        print(f"Y = {constant} + {slope} * x")
+        print(f"Y = {round(constant, 2)} + {round(slope, 2)} * x")

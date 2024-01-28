@@ -78,5 +78,5 @@ class UtilityClass():
     
     @staticmethod
     def check_if_dependent_value_valid(dependent_value):
-        if (type(dependent_value) != int or type(dependent_value) != float):
+        if not (type(dependent_value) == int or type(dependent_value) == float):
             raise TypeError(f"Independent value parameter must be a number.")
