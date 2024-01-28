@@ -62,9 +62,10 @@ start_time = time.time()
 # predict_sample_knn(k_number, iteration_count)
 # KNN -----
 
-file_path = 'country_citizens_gdp.csv'
-
-predict_sample_lr(file_path, 'Country Name', 'Monaco', 2030)
+# file_path = 'country_citizens_gdp.csv'
+file_path = os.path.join(
+            os.path.dirname(__file__), 'country_citizens_gdp.csv')
+predict_sample_lr(file_path, 'Country Name', 'Barbados', 2030)
 
 
 end_time = time.time()

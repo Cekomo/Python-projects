@@ -36,8 +36,13 @@ class LinearRegression():
 
 
     def calc_mean_squared_error(self, x_values, y_values, slope, constant):
-        mse_sum = np.nansum([(y - (constant + slope * x))**2 
-                                      for x, y in zip(x_values, y_values)])
-        sample_count = len([y for y in y_values if not np.isnan(y)])
+        normalized_range = np.nanmax(list(y_values))-np.nanmin(list(y_values))
+        norm_factor = 1000 / normalized_range
+        y_values_norm = [y * norm_factor for y in y_values]
+        predicted_values_norm = [(constant + slope * x) * norm_factor
+                                       for x in x_values]
+        mse_sum = np.nansum([(y - predicted)**2 for y, predicted in 
+                             zip(y_values_norm, predicted_values_norm)])
+        sample_count = len([y for y in y_values_norm if not np.isnan(y)])
         mse = mse_sum / sample_count
         print(f"Mean squared error for regression is: {round(mse, 2)}")
