@@ -60,8 +60,23 @@ class UtilityClass():
     def get_df_record(df, row_title, row_title_value):
         return df[df[row_title] == row_title_value].iloc[:, 1:]
     
+
     @staticmethod
     def form_dict_from_df(train_df):
         years = train_df.columns.astype(int)
         values = train_df.values.flatten()
         return {key: value for key, value in zip(years, values)}
+    
+
+    @staticmethod
+    def check_if_titles_valid(df, record_name, record_value):
+        if record_name not in df.columns:
+            raise KeyError(f"'{record_name}' is not valid header in dataframe.")
+        elif df[df[record_name] == record_value].empty:
+            raise KeyError(f"'{record_value}' is not valid identifier in dataframe.")
+        
+    
+    @staticmethod
+    def check_if_dependent_value_valid(dependent_value):
+        if (type(dependent_value) != int or type(dependent_value) != float):
+            raise TypeError(f"Independent value parameter must be a number.")

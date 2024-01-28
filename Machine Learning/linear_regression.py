@@ -5,7 +5,8 @@ class LinearRegression():
     def __init__(self) -> None:
         pass
 
-    def get_median(self, axis_coordinates):
+
+    def get_mean(self, axis_coordinates):
         total_sum = sum(axis_coordinates)
         return total_sum / len(axis_coordinates)
     
@@ -19,14 +20,13 @@ class LinearRegression():
                         zip(dict.keys(), dict.values()))
         denominator = sum((x - x_mean)**2 for x in dict.keys())
         return numerator / denominator
-    
 
     def calc_linear_regression_constant(self, x_mean, y_mean, slope):
         return y_mean - slope * x_mean
     
 
     def fit_data_to_regression_line(self, x, slope, constant):
-        print(f" Predicted output for {x} is: {constant + slope * x}")
+        print(f"Predicted output for {x} is: {constant + slope * x}")
 
 
     def print_lr_equation(self, slope, constant):
